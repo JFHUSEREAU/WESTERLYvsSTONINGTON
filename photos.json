@@ -1,0 +1,62 @@
+[
+ {
+  "id": "trophy-field",
+  "url": "photos/trophy-field.jpg",
+  "caption": "The Thanksgiving trophy, with both teams on the field",
+  "year": null,
+  "team": "B",
+  "topics": [
+   "awards",
+   "history"
+  ],
+  "place": [
+   "home"
+  ],
+  "pos": "75% 40%",
+  "approvedAt": 1795281300000
+ },
+ {
+  "id": "westerly-14",
+  "url": "photos/westerly-14.jpg",
+  "caption": "Westerly's No. 14 at the line against Stonington",
+  "year": null,
+  "team": "W",
+  "topics": [
+   "awards",
+   "action"
+  ],
+  "place": [
+   "awards"
+  ],
+  "pos": "50% 15%",
+  "approvedAt": 1795281100000
+ },
+ {
+  "id": "program-1991",
+  "url": "photos/program-1991.jpg",
+  "caption": "1991 game program: Westerly's Tom Terranova and Stonington's Dave Minnich, Palmer Field",
+  "year": 1991,
+  "team": "B",
+  "topics": [
+   "history"
+  ],
+  "place": [
+   "history"
+  ],
+  "approvedAt": 1795281000000
+ },
+ {
+  "id": "westerly-trophy",
+  "url": "photos/westerly-trophy.jpg",
+  "caption": "Westerly celebrates with the trophy \u00b7 Photo: @_Jangaba_",
+  "year": null,
+  "team": "W",
+  "topics": [
+   "awards"
+  ],
+  "place": [
+   "awards"
+  ],
+  "approvedAt": 1795280900000
+ }
+]

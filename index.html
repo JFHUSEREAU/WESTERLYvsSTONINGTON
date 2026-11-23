@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Westerly vs. Stonington</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: a proud hometown bowl-game site, official and celebratory, like the Rose Bowl's but for a 1911 Thanksgiving rivalry.
+   IDEA: the game-day program and the stadium scoreboard; every section reads like a page of the program.
+   PICTURE: real photos uploaded to the gallery fill the hero and image slots (B&W with team-colour fades); the series tug-of-war chart.
+   COLOUR and TYPE: Westerly navy and Stonington brown as full-bleed fields, chalk white, lamp yellow only on the scoreboard. Graduate varsity lettering, Barlow Condensed numerals, Barlow body.
+   LAYOUT: sticky nav, hero, countdown band, quick cards, last year, series chart, game finder, records, honor roll, history, footer. */
+:root{color-scheme:light dark;
+--navy:#1F2A44;--brown:#6B4423;--lamp:#FFD23F;
+--bg:light-dark(#ffffff,#10141f);--panel:light-dark(#fff,#181e2d);--ink:light-dark(#1b1d22,#eceae6);--mute:light-dark(#5d6170,#a3a7b4);--line:light-dark(#e3e5ea,#2b3245);
+--navyT:light-dark(#e4e9f4,#1c2741);--brownT:light-dark(#f3e9de,#33261a);--navyInk:light-dark(#1F2A44,#b8c6ea);--brownInk:light-dark(#6B4423,#e1b88f)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Barlow,system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+h1,h2,h3{font-family:'Barlow Condensed',Impact,sans-serif;font-weight:400;line-height:1.05;text-wrap:balance;margin:0}
+h2{font-size:clamp(30px,4.2vw,46px)}h3{font-size:22px}
+.num{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-variant-numeric:tabular-nums}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding:clamp(36px,5vw,72px) max(5vw,16px)}
+.kick{font:600 15px "Barlow Condensed",sans-serif;letter-spacing:.04em;color:var(--mute);margin:0 0 8px}
+.lede{color:var(--mute);max-width:62ch;margin:10px 0 0}
+/* nav */
+header{position:sticky;top:0;z-index:20;background:var(--navy);color:#fff;border-bottom:4px solid var(--brown)}
+.navin{display:flex;align-items:center;gap:18px;max-width:1240px;margin:0 auto;padding:0 max(5vw,16px);min-height:60px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none;font-family:'Barlow Condensed',sans-serif;font-size:17px}
+.brand svg{width:36px;height:36px}
+.logo{display:inline-block;flex:none;background:#fff;border-radius:50%;padding:4px;object-fit:contain;box-shadow:0 2px 6px rgba(0,0,0,.25);vertical-align:middle}
+.brand .logo{width:38px;height:38px}
+.hero h1 .row{display:flex;align-items:center;gap:.25em}.hero h1 .logo{width:1.05em;height:1.05em;padding:.06em}
+.series .logo{width:clamp(48px,6vw,64px);height:clamp(48px,6vw,64px);margin-bottom:6px}
+.sb .logo{width:clamp(44px,6vw,64px);height:clamp(44px,6vw,64px)}.sb .tm{display:flex;align-items:center;gap:12px}.sb .s .tm{flex-direction:row-reverse}
+.pill .logo{width:44px;height:44px}
+.aw .logo{width:26px;height:26px;padding:2px;box-shadow:none;border:1px solid var(--line)}
+nav.scroll{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;margin-left:auto}
+nav a{flex:none;text-decoration:none;font:600 16px "Barlow Condensed",sans-serif;padding:12px 11px;border-radius:6px;white-space:nowrap}
+nav a:hover,nav a:focus-visible{background:rgba(255,255,255,.12);outline:none}
+/* hero */
+.hero{position:relative;color:#fff;background:#24345a;overflow:hidden}
+.hero svg.scene{position:absolute;inset:0;width:100%;height:100%}
+.heroin{position:relative;max-width:1240px;margin:0 auto;padding:clamp(56px,9vw,120px) max(5vw,16px) clamp(150px,20vw,240px)}
+.hero h1{font-size:clamp(40px,7.4vw,92px);text-shadow:0 3px 0 rgba(0,0,0,.25)}
+.hero h1 span{display:block;font-size:.42em;margin:.25em 0;opacity:.9}
+.hero .meta{font:600 clamp(18px,2.2vw,24px) "Barlow Condensed",sans-serif;margin:18px 0 26px}
+.btn{display:inline-flex;align-items:center;min-height:46px;padding:0 20px;border-radius:999px;font:700 17px "Barlow Condensed",sans-serif;text-decoration:none;border:2px solid #fff;margin:0 8px 8px 0}
+.btn.solid{background:#fff;color:var(--navy)}
+.btn:focus-visible{outline:3px solid var(--lamp);outline-offset:2px}
+/* countdown + scoreboard */
+.board{background:#0d1220;color:#fff}
+.boardin{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:center}
+.cd{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.cd div{background:#1a2238;border-radius:10px;padding:12px 6px;text-align:center;box-shadow:inset 0 -3px 0 rgba(0,0,0,.4)}
+.cd b{display:block;font-size:clamp(38px,6vw,64px);line-height:1;color:var(--lamp);text-shadow:0 0 18px rgba(255,210,63,.35)}
+.cd small{font:600 14px "Barlow Condensed",sans-serif;color:#aab3c9}
+.series{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);border-radius:14px;overflow:hidden;text-align:center}
+.series>div{padding:18px 10px}
+.series .w{background:var(--navy)}.series .s{background:var(--brown)}.series .t{background:#fff;color:#111;padding-inline:clamp(16px,3vw,34px)}
+.tiemark{display:grid;place-items:center;margin:0 auto 6px;width:clamp(48px,6vw,64px);height:clamp(48px,6vw,64px);border-radius:50%;background:linear-gradient(90deg,var(--navy) 50%,var(--brown) 50%);color:#fff;font:900 clamp(26px,3vw,34px)/1 'Barlow Condensed',sans-serif;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.series .t small{opacity:1;color:#444}
+.series .logo{display:block;margin-inline:auto}
+.series b{display:block;font-size:clamp(48px,7vw,84px);line-height:1}
+.series small{font:600 15px "Barlow Condensed",sans-serif;opacity:.85}
+.boardnote{grid-column:1/-1;color:#aab3c9;margin:0;font-size:15px}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:26px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column}
+.card .art{height:120px;display:grid;place-items:center}
+.card .art svg{width:100%;height:100%}
+.card div.tx{padding:16px 18px 20px}
+.card p{margin:6px 0 0;color:var(--mute)}
+.card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.12)}
+.card:focus-visible{outline:3px solid var(--navyInk)}
+/* last year */
+.recap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:22px;margin-top:24px}
+.honor{display:grid;gap:10px;align-content:start}
+.pill{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:12px;color:#fff}
+.pill.W{background:var(--navy)}.pill.S{background:var(--brown)}
+.pill b{font-size:18px}.pill span{display:block;font-size:14px;opacity:.85}
+/* game card */
+.gc{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.gchead{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between;padding:12px 18px;background:#0d1220;color:#cfd5e4;font:600 16px "Barlow Condensed",sans-serif}
+.sb{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.sb>div{padding:18px 20px;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.sb .w{background:var(--navy)}.sb .s{background:var(--brown);flex-direction:row-reverse}
+.sb .team{font:400 clamp(15px,1.7vw,21px) 'Barlow Condensed',sans-serif}
+.sb .team small{display:block;font:600 14px "Barlow Condensed",sans-serif;opacity:.8}
+.sb .pts{font-size:clamp(52px,8vw,92px);line-height:1}
+.sb .lost{opacity:.55}
+.gcbody{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;padding:18px 20px 22px}
+.wx{display:flex;gap:14px;align-items:center}.wx svg{width:84px;height:84px;flex:none}
+.facts{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;margin:0}
+.facts dt{color:var(--mute)}.facts dd{margin:0;font-weight:600}
+.result{font:700 18px "Barlow Condensed",sans-serif;padding:10px 20px;border-top:1px solid var(--line)}
+.ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:22px 0 16px}
+select,button{font:600 16px Barlow,sans-serif;min-height:46px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:0 14px}
+button{cursor:pointer}button:hover{border-color:var(--mute)}
+select:focus-visible,button:focus-visible{outline:3px solid var(--navyInk);outline-offset:1px}
+.note{margin:0;padding:0 20px 20px;color:var(--mute)}
+/* chart */
+.fig{position:relative;height:clamp(300px,38vw,420px);margin-top:20px;background:var(--panel);border:1px solid var(--line);border-radius:16px}
+.fig>svg{position:absolute;inset:0;width:100%;height:100%}
+.tip{position:absolute;pointer-events:none;background:#0d1220;color:#fff;border-radius:8px;padding:6px 10px;font-size:14px;white-space:nowrap;opacity:0;transform:translate(-50%,-110%)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;color:var(--mute);font-size:15px}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:6px}
+/* records */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 18px}
+.tabs button[aria-selected=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.cats{display:grid;align-items:start;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:16px}
+.cat{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.cat h3{font-size:18px;padding:12px 16px;background:#0d1220;color:#fff}
+.rr{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 16px;border-top:1px solid var(--line)}
+.rr.W{background:var(--navyT)}.rr.S{background:var(--brownT)}
+.rr.top.W{background:var(--navy);color:#fff}.rr.top.S{background:var(--brown);color:#fff}
+.rr .rk{font:700 17px "Barlow Condensed",sans-serif}
+.rr small{display:block;font-size:13px;opacity:.75}
+.rr .v{font-size:24px;white-space:nowrap;text-align:right}
+/* honor roll */
+.years{display:grid;align-items:start;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px;margin-top:22px}
+.yr{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+.yr h3{font-size:28px;margin-bottom:8px}
+.aw{display:flex;gap:10px;padding:7px 0;border-top:1px solid var(--line)}
+.dot{flex:none;width:12px;height:12px;border-radius:50%;margin-top:6px}.dot.W{background:var(--navy)}.dot.S{background:var(--brown)}
+:root:not([data-theme=light]) .dot.W{box-shadow:0 0 0 2px #b8c6ea}
+.aw small{display:block;color:var(--mute);font-size:14px}
+/* history */
+.hist{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:16px;margin-top:22px}
+.fact{border-left:5px solid var(--navy);background:var(--panel);border-radius:0 12px 12px 0;padding:14px 16px}
+.fact.S{border-color:var(--brown)}
+.fact b{display:block;font-size:34px;line-height:1.1}
+.fact p{margin:4px 0 0;color:var(--mute)}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-top:20px}
+.hbar{display:grid;grid-template-columns:130px minmax(0,1fr);gap:10px;align-items:center;margin:8px 0}
+.hbar .bar{display:flex;height:30px;border-radius:6px;overflow:hidden;font:700 15px "Barlow Condensed",sans-serif;color:#fff}
+.hbar .bar span{display:grid;place-items:center;white-space:nowrap}
+.hero.photo{background-size:cover;background-position:center}.hero.photo svg.scene{display:none}.hero.photo::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,18,32,.85),rgba(13,18,32,.35))}
+.gctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:22px 0 16px}
+.chip{min-height:44px;border-radius:999px}.chip[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:12px}
+.ph{position:relative;margin:0;border-radius:12px;overflow:hidden;background:var(--line);aspect-ratio:4/3;cursor:pointer;border:0;padding:0;width:100%}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph figcaption{position:absolute;inset:auto 0 0 0;padding:22px 10px 8px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;font-size:14px;text-align:left}
+.ph .tag{position:absolute;top:8px;left:8px;width:12px;height:12px;border-radius:50%;box-shadow:0 0 0 2px #fff}
+.empty{background:var(--panel);border:2px dashed var(--line);border-radius:14px;padding:28px;text-align:center;color:var(--mute)}
+.up{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin:20px 0 4px}
+.up summary{cursor:pointer;font:600 18px "Barlow Condensed",sans-serif;min-height:30px}
+.upf{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px;margin-top:14px;align-items:end}
+.upf label{display:grid;gap:4px;font-weight:600;font-size:15px}
+input[type=text],input[type=file]{font:16px Barlow,sans-serif;min-height:46px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:8px 12px;width:100%}
+.solidb{background:var(--navy);color:#fff;border-color:var(--navy)}
+.gph{display:flex;gap:8px;overflow-x:auto;padding:0 20px 18px}.gph:empty{display:none}
+.gph button{flex:none;width:120px;height:90px;padding:0;border-radius:8px;overflow:hidden;border:0}.gph img{width:100%;height:100%;object-fit:cover}
+#lb{position:fixed;inset:0;z-index:50;background:rgba(8,10,16,.92);display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding:14px;color:#fff}
+#lb[hidden]{display:none}#lb img{max-width:100%;max-height:100%;margin:auto;object-fit:contain;border-radius:8px}
+#lb .bar{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;max-width:1240px;width:100%;margin:0 auto;padding:8px 0}
+#lb button{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+footer{background:var(--navy);color:#d6dcea;border-top:6px solid var(--brown)}
+footer p{margin:6px 0;max-width:80ch}
+.alt{background:light-dark(#ffffff,#0c101a)}
+.band+.band:not(.board){border-top:1px solid var(--line)}
+@media(max-width:860px){.boardin,.recap,.gcbody,.split{grid-template-columns:minmax(0,1fr)}.cards{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.brand span{display:none}.sb>div{padding:14px}.hbar{grid-template-columns:90px minmax(0,1fr)}.rr{grid-template-columns:40px minmax(0,1fr) auto}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card:hover{transform:none}}
+
+/* ---- poster restyle: condensed caps, white tags, B&W with team-colour fades ---- */
+h1,h2,h3,.brand,.sb .team,.yr h3,.cat h3,.fact b{font-family:'Barlow Condensed',Impact,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.005em}
+h1,h2{line-height:.92}h2{font-size:clamp(36px,5.2vw,60px)}h3{font-size:24px;line-height:1}
+.kick{display:inline-block;background:var(--navy);color:#fff;font:800 clamp(14px,1.4vw,17px)/1 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.02em;padding:7px 11px 6px;margin:0 0 14px}
+.kick.tag,.board .kick,.hero .kick{background:#fff;color:#111}
+.alt .kick{background:var(--brown)}
+.lede{font-size:17px}
+.brand{font-size:21px}
+.hero{background:#2a2d33}
+.hero svg.scene{filter:grayscale(1) contrast(1.15) brightness(.95)}
+.heroshade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 25%,rgba(0,0,0,.25) 50%,rgba(31,42,68,.88) 82%,#1F2A44 100%),linear-gradient(90deg,rgba(31,42,68,0) 45%,rgba(107,68,35,.85) 100%)}
+.hero.photo{background-color:#222}.hero.photo::before{display:none}
+.hero.photo .heroshade{background:linear-gradient(180deg,rgba(0,0,0,.1) 20%,rgba(0,0,0,.35) 50%,rgba(31,42,68,.9) 82%,#1F2A44 100%),linear-gradient(90deg,rgba(31,42,68,0) 45%,rgba(107,68,35,.8) 100%)}
+.heroin{padding-top:clamp(140px,22vw,300px);padding-bottom:clamp(40px,6vw,72px)}
+.hero h1{font-size:clamp(38px,10.5vw,150px);text-shadow:0 4px 18px rgba(0,0,0,.35)}
+.hero h1 .row{gap:.18em}.hero h1 .logo{width:.82em;height:.82em}
+.hero h1 .vs{display:inline-block;font-size:.32em;background:#fff;color:#111;padding:.08em .3em;margin:.1em 0 .12em;text-shadow:none;opacity:1;display:table}
+.hero .meta{font-weight:700;text-transform:uppercase;letter-spacing:.01em}
+.btn{border-radius:0;text-transform:uppercase;letter-spacing:.02em}
+.board{background:linear-gradient(100deg,#151b2c 0%,#1F2A44 45%,#3a2716 100%)}
+.cd div{border-radius:0;background:rgba(0,0,0,.35)}
+.series{border-radius:0}
+.series small,.cd small{text-transform:uppercase;letter-spacing:.03em}
+.card,.cat,.yr,.gc,.fig,.up,.empty,.ph{border-radius:0}
+.card .art{position:relative}
+.card .art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.35))}
+.card h3{font-size:28px}
+.gchead,.result{text-transform:uppercase;letter-spacing:.02em}
+.sb .team{font-size:clamp(18px,2vw,26px)}
+.sb .w{background:linear-gradient(180deg,#26355a,#1F2A44)}.sb .s{background:linear-gradient(180deg,#7d522c,#6B4423)}
+.pill{border-radius:0}
+.gc{container-type:inline-size}@container (max-width:760px){.sb .team{display:none}}@container (max-width:420px){.sb>div{padding:12px}.sb .pts{font-size:56px}}
+
+.cat h3{font-size:20px;background:linear-gradient(90deg,#111,#2a2d33)}
+.rr .rk{text-transform:uppercase}
+.fact{border-radius:0}.fact b{font-size:40px}
+.hbar .bar{border-radius:0}
+.tabs button,.chip,select,button,input[type=text],input[type=file]{border-radius:0}
+.tabs button,.chip,.solidb{text-transform:uppercase;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:17px;letter-spacing:.02em}
+.ph img{filter:grayscale(.15)}
+.ph figcaption{font:700 15px 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.02em}
+footer{background:linear-gradient(100deg,#1F2A44 0%,#1F2A44 50%,#6B4423 100%);border-top:0}
+.gameday{background:linear-gradient(100deg,#1F2A44 0%,#1F2A44 55%,#6B4423 100%);color:#fff}
+.gameday h2{color:#fff}
+.gd{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.25fr);gap:16px;margin-top:22px}
+.gdc{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);padding:20px}
+.gdc h3{font-size:26px;margin-bottom:10px}.gdc p{color:#dfe4ee}
+.gdc .btn{border-color:#fff;color:#fff}.gdc .btn.solid{background:#fff;color:var(--navy)}
+.venue{font:800 24px/1.05 'Barlow Condensed',sans-serif;text-transform:uppercase;color:#fff!important;margin:0 0 6px}
+.fcmain{display:flex;gap:14px;align-items:center}.fcmain svg{width:96px;height:96px;flex:none}
+.fcmain b{display:block;font:800 30px/1 'Barlow Condensed',sans-serif;text-transform:uppercase}
+.fcrow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:14px}
+.fcrow div{text-align:center;padding:8px 4px;background:rgba(0,0,0,.2);font-size:14px}.fcrow div.g{background:#fff;color:var(--navy)}
+.fcrow svg{width:40px;height:40px;display:block;margin:0 auto}
+.fcnote{font-size:13px;color:#c9d0de;margin:10px 0 0}
+@media(max-width:860px){.gd{grid-template-columns:minmax(0,1fr)}}
+header{border-bottom:0;box-shadow:0 4px 0 #fff,0 8px 0 var(--brown)}
+
+/* ---- photo-first: no drawings; real photos fill every image slot ---- */
+.hero{background:linear-gradient(112deg,#1F2A44 0 54%,#6B4423 54% 100%)}
+.hero:not(.photo) .heroshade{background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.35) 100%)}
+.hero.photo{background-size:cover;background-position:center 30%}
+.hero.photo::after{content:"";position:absolute;inset:0;backdrop-filter:grayscale(1) contrast(1.1);-webkit-backdrop-filter:grayscale(1) contrast(1.1);z-index:0}
+.heroshade{z-index:1}.heroin{z-index:2}
+.photoslot{background-size:cover;background-position:center;height:170px!important;place-items:end start!important;padding:12px 16px}
+.photoslot.has{filter:grayscale(1) contrast(1.1)}
+.photoslot.has::after{background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.55))!important}
+.artword{position:relative;z-index:1;font:900 46px/1 'Barlow Condensed',sans-serif;text-transform:uppercase;color:rgba(255,255,255,.22)}
+.photoslot.has .artword{display:none}
+.yrph:empty{display:none}.yrph{margin:-16px -16px 12px}.yrph .cover{display:block;width:100%;height:150px;padding:0;border:0;overflow:hidden;cursor:pointer}
+.yrph img{width:100%;height:100%;object-fit:cover;display:block}
+.gph img{filter:grayscale(.1)}
+
+/* ---- review queue ---- */
+.lab{font:800 16px 'Barlow Condensed',sans-serif;text-transform:uppercase}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.fs{border:1px solid var(--line);padding:10px 12px;margin:0;grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px 16px}
+.fs legend{font-weight:600;font-size:15px;padding:0 4px}
+.ck{display:inline-flex!important;align-items:center;gap:8px;min-height:36px;font-weight:500!important;grid-template-columns:none!important}
+.ck input{width:20px;height:20px}
+.rq{border:3px solid var(--navy);padding:18px;margin:20px 0}
+.rq h3{font-size:26px}
+.rqi{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:16px;border-top:1px solid var(--line);padding:16px 0 0;margin-top:16px}
+.rqi>img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.rqf{display:grid;gap:10px}.rqf label{display:grid;gap:4px;font-weight:600;font-size:15px}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.who{margin:0;color:var(--mute)}
+.acts{display:flex;gap:10px;flex-wrap:wrap}
+.secph{display:flex;gap:8px;overflow-x:auto;margin:16px 0 4px}.secph:empty{display:none}
+.secph button{flex:none;width:clamp(150px,22vw,240px);aspect-ratio:4/3;padding:0;border:0;cursor:pointer;overflow:hidden}
+.secph img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1);transition:filter .2s}
+.secph button:hover img,.secph button:focus-visible img{filter:none}
+@media(max-width:700px){.rqi{grid-template-columns:minmax(0,1fr)}.row2{grid-template-columns:minmax(0,1fr)}}
+
+/* ---- year by year ---- */
+.dec{border:1px solid var(--line);margin:0 0 8px}
+.dec summary{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;padding:12px 16px;cursor:pointer;list-style:none;min-height:56px}
+.dec summary::-webkit-details-marker{display:none}
+.dec summary h4{margin:0;font:800 26px/1 'Barlow Condensed',sans-serif;text-transform:uppercase}
+.dec summary h4::before{content:"+";display:inline-block;width:22px;color:var(--mute)}.dec[open] summary h4::before{content:"–"}
+.dec summary .rec{display:flex;gap:6px;font:700 15px 'Barlow Condensed',sans-serif;text-transform:uppercase}
+.dec summary .rec span{padding:4px 8px;color:#fff;white-space:nowrap}
+.dec[open] summary{border-bottom:1px solid var(--line)}
+.yt{width:100%;border-collapse:collapse;font-size:15px}
+.yt th{text-align:left;font:700 13px 'Barlow Condensed',sans-serif;text-transform:uppercase;color:var(--mute);padding:8px 16px}
+.yt td{padding:9px 16px;border-top:1px solid var(--line)}.yt td:last-child{max-width:420px}
+.yt td.sc{font:700 18px 'Barlow Condensed',sans-serif;white-space:nowrap}
+.yt .w{color:var(--navyInk)}.yt .s{color:var(--brownInk)}
+.yt .pill2{display:inline-block;padding:2px 8px;color:#fff;font:700 13px 'Barlow Condensed',sans-serif;text-transform:uppercase}
+.yt tr.go{cursor:pointer}.yt tr.go:hover td{background:var(--navyT)}
+.yt a{font-weight:600}
+
+@media(max-width:600px){.yt thead{display:none}.yt tr{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:4px 12px;padding:10px 14px;border-top:1px solid var(--line);align-items:center}
+.yt td{border:0;padding:0}.yt td:nth-child(2),.yt td:nth-child(6){grid-column:1/-1;font-size:14px}.yt td:nth-child(6):empty{display:none}
+.yt td:nth-child(5)::before{content:"Series ";color:var(--mute);font-size:13px}.dec summary{grid-template-columns:minmax(0,1fr)}.dec summary .rec{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<header><div class="navin">
+  <a class="brand" href="#top"><img class="logo" src="img/westerly.png" alt="Westerly Bulldogs"><img class="logo" src="img/stonington.png" alt="Stonington Bears"><span>Westerly vs. Stonington</span></a>
+  <nav class="scroll" aria-label="Sections"><a href="#gameday">2026 Game</a><a href="#last">2025 Recap</a><a href="#series">Series</a><a href="#finder">Game Finder</a><a href="#records">Records</a><a href="#honors">Award Winners</a><a href="#history">History</a><a href="#gallery">Gallery</a></nav>
+</div></header>
+
+<section class="hero" id="top">
+  <div class="heroshade" aria-hidden="true"></div><div class="heroin">
+    <p class="kick tag">The Thanksgiving Day rivalry · Since 1911</p>
+    <h1><span class="row" style="font-size:1em;margin:0;opacity:1"><img class="logo" src="img/westerly.png" alt="">Westerly</span><span class="vs">vs.</span><span class="row" style="font-size:1em;margin:0;opacity:1"><img class="logo" src="img/stonington.png" alt="">Stonington</span></h1>
+    <p class="meta" id="heroMeta">Palmer Field, Stonington, Conn. · Thursday, November 26, 2026 · 10 a.m.</p>
+    <a class="btn solid" id="heroTix" href="https://gofan.co/event/6778173" target="_blank" rel="noopener">Buy tickets</a><a class="btn" href="#gameday">Game day</a><a class="btn" href="#finder">Relive any game</a><a class="btn" href="#gallery">Photo gallery</a>
+  </div>
+</section>
+
+<section class="band board" id="game"><div class="wrap boardin">
+  <div>
+    <p class="kick tag" id="cdLabel">Kickoff countdown · Thursday, Nov. 26, 10:00 a.m.</p>
+    <div class="cd num" id="cd"><div><b id="cdD">0</b><small>Days</small></div><div><b id="cdH">0</b><small>Hrs</small></div><div><b id="cdM">0</b><small>Mins</small></div><div><b id="cdS">0</b><small>Secs</small></div></div>
+  </div>
+  <div>
+    <p class="kick tag">All-time series</p>
+    <div class="series num"><div class="w"><img class="logo" src="img/westerly.png" alt="Westerly"><b id="sW">–</b><small>Westerly wins</small></div><div class="t"><span class="tiemark" aria-hidden="true"></span><b id="sT">–</b><small>Ties</small></div><div class="s"><img class="logo" src="img/stonington.png" alt="Stonington"><b id="sS">–</b><small>Stonington wins</small></div></div>
+  </div>
+  <p class="boardnote" id="boardNote"></p>
+</div></section>
+
+<section class="band gameday" id="gameday"><div class="wrap">
+  <p class="kick tag" id="gdKick">Game day 2026</p>
+  <h2 id="gdTitle">Thanksgiving at Palmer Field</h2>
+  <div class="secph" data-place="gameday"></div>
+  <div class="gd">
+    <div class="gdc tix"><h3>Tickets</h3><p id="gdTixTxt">Tickets are sold online through GoFan.</p><a class="btn solid" id="gdTix" href="https://gofan.co/event/6778173" target="_blank" rel="noopener">Buy tickets on GoFan</a></div>
+    <div class="gdc"><h3>Location</h3><p class="venue" id="gdVenue"></p><p id="gdAddr" style="margin:0 0 14px"></p><a class="btn" id="gdMap" target="_blank" rel="noopener">Get directions</a></div>
+    <div class="gdc fc"><h3>Forecast</h3><div id="gdFc"></div></div>
+  </div>
+</div></section>
+<section class="band"><div class="wrap">
+  <p class="kick" id="gameKick">The next game</p>
+  <h2 id="gameTitle">Game day at Palmer Field</h2>
+  <p class="lede" id="gameLede"></p>
+  <div class="cards">
+    <a class="card" href="#series"><div class="art photoslot" style="background-color:var(--navy)"><span class="artword">Series</span></div><div class="tx"><h3>Series history</h3><p>115 years of the lead swinging back and forth, game by game.</p></div></a>
+    <a class="card" href="#records"><div class="art photoslot" style="background-color:var(--brown)"><span class="artword">Records</span></div><div class="tx"><h3>Record book</h3><p>Longest runs, most touchdowns and most points, for both schools and each school.</p></div></a>
+    <a class="card" href="#honors"><div class="art photoslot" style="background-color:#111"><span class="artword">Honors</span></div><div class="tx"><h3>Award winners</h3><p>Game MVPs, leadership awards and the top players named after each game.</p></div></a>
+  </div>
+</div></section>
+
+<section class="band alt" id="last"><div class="wrap">
+  <p class="kick">Relive last year</p>
+  <h2 id="lastTitle">2025 recap</h2>
+  <div class="secph" data-place="recap"></div>
+  <div class="recap"><div id="lastCard"></div><div class="honor" id="lastHonors"></div></div>
+</div></section>
+
+<section class="band" id="series"><div class="wrap">
+  <p class="kick">The tug of war</p>
+  <h2 id="seriesTitle">Who led the series after every game</h2>
+  <p class="lede">Each bar is one game. Bars above the line mean Westerly led the all-time series after that game; bars below mean Stonington led. Tap a bar to open that game.</p>
+  <div class="fig" id="fig"><svg id="chart" role="img" aria-label="Series lead after every game since 1911"></svg><div class="tip" id="tip"></div></div>
+  <div class="legend"><span><i style="background:var(--navy)"></i>Westerly ahead</span><span><i style="background:var(--brown)"></i>Stonington ahead</span><span><i style="background:#9aa0ad"></i>Series even</span></div>
+</div></section>
+
+<section class="band alt" id="finder"><div class="wrap">
+  <p class="kick">Game finder</p>
+  <h2>Every game since 1911</h2>
+  <div class="ctl"><label for="pick" class="kick" style="margin:0">Choose a game</label><select id="pick"></select><button id="prev" type="button">‹ Earlier</button><button id="next" type="button">Later ›</button></div>
+  <div id="finderCard"></div>
+</div></section>
+
+<section class="band" id="records"><div class="wrap">
+  <p class="kick">The record book</p>
+  <h2>Single-game records</h2>
+  <div class="secph" data-place="records"></div>
+  <p class="lede">The leader in each category is shown in solid team colour; the rest of the top marks follow in a lighter shade.</p>
+  <div class="tabs" role="tablist"><button role="tab" data-set="all" aria-selected="true">Overall</button><button role="tab" data-set="W" aria-selected="false">Westerly</button><button role="tab" data-set="S" aria-selected="false">Stonington</button></div>
+  <div class="cats" id="cats"></div>
+</div></section>
+
+<section class="band alt" id="honors"><div class="wrap">
+  <p class="kick">Honor roll</p>
+  <h2>Award winners</h2>
+  <div class="secph" data-place="awards"></div>
+  <p class="lede">Game MVPs and postgame awards as reported by the Westerly Sun and The Day. Records before 2018 are sparse.</p>
+  <div class="years" id="years"></div>
+</div></section>
+
+<section class="band alt" id="history"><div class="wrap">
+  <p class="kick">History and tradition</p>
+  <h2>A rivalry in numbers</h2>
+  <div class="secph" data-place="history"></div>
+  <div class="hist" id="facts"></div>
+  <div class="split"><div><h3 style="margin-bottom:8px">Results by occasion</h3><div id="byHol"></div></div><div><h3 style="margin-bottom:8px">Results by decade</h3><div id="byDec"></div></div></div>
+  <h3 style="font-size:32px;margin:40px 0 6px">Year by year</h3>
+  <p class="lede" style="margin:0 0 14px">Every game, grouped by decade. Tap a decade to open it, or a game to see its full card.</p>
+  <div id="ybyr"></div>
+</div></section>
+
+<section class="band" id="gallery"><div class="wrap">
+  <p class="kick">Photo gallery</p>
+  <h2>Thanksgiving mornings, in pictures</h2>
+  <p class="lede">Photos from players, families and fans. Every photo is reviewed before it appears on the site.</p>
+  <p id="submitWrap" hidden style="margin:18px 0 0"><a class="btn solidb" id="submitLink" target="_blank" rel="noopener" style="border:0">Submit your photos</a> <span style="color:var(--mute);margin-left:8px">Every photo is reviewed before it appears.</span></p>
+  <div class="gctl"><label for="gYear" class="lab">Show</label><select id="gYear"><option value="">All years</option></select>
+    <div class="chips" id="chips"></div></div>
+  <div id="photos"><p class="empty" id="galNote">Loading photos…</p></div>
+</div></section>
+<div id="lb" hidden role="dialog" aria-modal="true" aria-label="Photo"><div class="bar"><span id="lbCap"></span><span style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" id="lbFeat" hidden>Feature on home page</button><button type="button" id="lbDel" hidden>Delete</button><button type="button" id="lbClose">Close ✕</button></span></div><img id="lbImg" alt=""><div class="bar"><button type="button" id="lbPrev">‹ Previous</button><span id="lbMeta" style="color:#c9cfdc"></span><button type="button" id="lbNext">Next ›</button></div></div>
+
+<footer class="band"><div class="wrap">
+  <p style="font-family:'Barlow Condensed',sans-serif;font-size:22px;color:#fff">Westerly vs. Stonington</p>
+  <p>Scores from the rivalry game log and RIHSS; records from the rivalry record book with 2023–2025 updates from the Westerly Sun and MaxPreps; awards from the Westerly Sun and The Day; game-day weather from the Open-Meteo historical archive. A few early scores and labels differ between sources, and those games carry a note.</p>
+  <p id="upd"></p>
+</div></footer>
+
+<script>
+{
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let KICK=new Date('2026-11-26T10:00:00-05:00');
+let D,G=[],P=[];
+
+function wxIcon(c='',p=0){
+  c=c.toLowerCase();
+  const sun='<g><circle cx="40" cy="38" r="15" fill="#FFC928"/><g stroke="#FFC928" stroke-width="4" stroke-linecap="round">'+[0,45,90,135,180,225,270,315].map(a=>{const r=a*Math.PI/180;return `<line x1="${40+22*Math.cos(r)}" y1="${38+22*Math.sin(r)}" x2="${40+30*Math.cos(r)}" y2="${38+30*Math.sin(r)}"/>`}).join('')+'</g></g>';
+  const cloud=(f='#d6dbe4',x=0,y=0)=>`<path transform="translate(${x} ${y})" d="M30 70h46a14 14 0 0 0 0-28 20 20 0 0 0-38-4 13 13 0 0 0-8 32z" fill="${f}" stroke="#8b95a8" stroke-width="2"/>`;
+  const drops=(n,col='#2f7de1')=>Array.from({length:n},(_,i)=>`<line x1="${36+i*10}" y1="${76}" x2="${32+i*10}" y2="${90}" stroke="${col}" stroke-width="4" stroke-linecap="round"/>`).join('');
+  let b;
+  if(/snow/.test(c)) b=cloud('#e8edf4',0,-8)+[34,48,62,76].map((x,i)=>`<text x="${x}" y="${82+(i%2)*8}" font-size="16" fill="#7fb2f0" text-anchor="middle">✱</text>`).join('');
+  else if(/heavy rain/.test(c)||(/rain/.test(c)&&p>=.15)) b=cloud('#7d8798',0,-10)+drops(5,'#1f6fd6');
+  else if(/rain|shower/.test(c)) b=cloud('#a9b2c1',0,-10)+drops(4);
+  else if(/drizzle/.test(c)) b=cloud('#c3c9d3',0,-10)+drops(3,'#5d9be8');
+  else if(/overcast/.test(c)) b=cloud('#b9c0cc',-6,-12)+cloud('#d6dbe4',4,0);
+  else if(/partly|mostly/.test(c)) b=sun+cloud('#eef1f6',8,8);
+  else b=sun;
+  return `<svg viewBox="0 0 100 100" aria-hidden="true">${b}</svg>`;
+}
+const L=t=>`<img class="logo" src="img/${t==='W'?'westerly':'stonington'}.png" alt="${t==='W'?'Westerly':'Stonington'}">`;
+const team=t=>t==='W'||t==='Westerly'?'Westerly':'Stonington';
+
+function compute(){
+  let w=0,s=0,t=0;
+  G.forEach(g=>{ if(g.w==null) return; if(g.w>g.s){w++;g.win='W'}else if(g.s>g.w){s++;g.win='S'}else{t++;g.win='T'} g.W=w;g.S=s;g.T=t;g.lead=w-s; P.push(g)});
+  // streaks
+  let cur=null,run=0;P.forEach(g=>{ if(g.win===cur) run++; else {cur=g.win;run=1} g.streak=run;});
+  G.forEach(g=>{g.aw=D.awards.filter(a=>a.y===g.y&&g.h==='Thanksgiving')});
+}
+function label(g){return `${g.y} ${g.h==='Thanksgiving'?'Thanksgiving':g.h==='Armistice Day'?'Armistice Day':'regular season'}`}
+
+function gameCard(g,big){
+  if(g.w==null) return `<div class="gc"><div class="gchead"><span>Game ${g.n} · ${esc(g.d)}</span><span>Upcoming</span></div><div class="sb num"><div class="w"><span class="tm">${L('W')}<span class="team">Westerly</span></span><span class="pts">–</span></div><div class="s"><span class="tm">${L('S')}<span class="team">Stonington</span></span><span class="pts">–</span></div></div><p class="note" style="padding-top:16px">${esc(g.field||'')}${g.host?' · Host: '+esc(g.host.replace(' (rotation)','')):''}. The score and details appear here after the game.</p></div>`;
+  const wl=g.win==='S'?'lost':'',sl=g.win==='W'?'lost':'';
+  const res=g.win==='T'?`Tie, ${g.w}–${g.s}`:`${team(g.win)} wins by ${Math.abs(g.w-g.s)}`;
+  const ser=g.W===g.S?`Series tied ${g.W}–${g.S}–${g.T}`:g.W>g.S?`Westerly led series ${g.W}–${g.S}–${g.T}`:`Stonington led series ${g.S}–${g.W}–${g.T}`;
+  const wx=g.cond?`<div class="wx">${wxIcon(g.cond,g.pr)}<div><b style="font-size:20px">${esc(g.cond)}</b><br><span class="num" style="font-size:18px">${g.kt??'–'}°F at kickoff</span><br><span style="color:var(--mute)">High ${g.hi??'–'}° · Low ${g.lo??'–'}° · Wind ${g.wind??'–'} mph${g.pr?` · ${g.pr} in. of rain`:''}</span></div></div>`:`<p style="color:var(--mute);margin:0">No weather on file for this date.</p>`;
+  const aw=g.aw.length?`<div>${g.aw.map(a=>`<div class="aw">${L(a.t)}<div><b>${esc(a.p)}</b><small>${esc(a.a)}</small></div></div>`).join('')}</div>`:'';
+  return `<article class="gc"><div class="gchead"><span>Game ${g.n} · ${esc(label(g))}</span><span>${esc(g.d||g.y)}${g.field?' · '+esc(g.field):''}</span></div>
+  <div class="sb num"><div class="w"><span class="tm">${L('W')}<span class="team ${wl}">Westerly<small>Bulldogs</small></span></span><span class="pts ${wl}">${g.w}</span></div><div class="s"><span class="tm">${L('S')}<span class="team ${sl}" style="text-align:right">Stonington<small>Bears</small></span></span><span class="pts ${sl}">${g.s}</span></div></div>
+  <div class="result">${res} · ${ser}</div>
+  <div class="gcbody"><div>${wx}</div><dl class="facts">${g.host?`<dt>Host</dt><dd>${esc(g.host.replace(' (rotation)',''))}</dd>`:''}<dt>Streak</dt><dd>${g.win==='T'?'Tie':team(g.win)+' '+g.streak+' straight'}</dd>${g.src?`<dt>Sources</dt><dd style="font-weight:400">${esc(g.src)}</dd>`:''}</dl>${big&&aw?`<div style="grid-column:1/-1"><h3 style="font-size:18px">Award winners</h3>${aw}</div>`:''}</div>
+  ${g.note?`<p class="note">${esc(g.note)}</p>`:''}<div class="gph" data-y="${g.h==='Thanksgiving'?g.y:''}"></div></article>`;
+}
+
+const VENUES={Palmer:{name:'Donald E. Palmer Field',sub:'Stonington High School',addr:'176 S. Broad St., Pawcatuck, CT 06379',town:'Pawcatuck, Conn.'},Augeri:{name:'Augeri Field',sub:'Westerly High School',addr:'23 Ward Ave., Westerly, RI 02891',town:'Westerly, R.I.'}};
+function gameday(nx){
+  if(!nx){$('gameday').hidden=true;$('heroTix').hidden=true;return}
+  const v=/Augeri/.test(nx.field||'')?VENUES.Augeri:VENUES.Palmer,N=D.next&&D.next.year===nx.y?D.next:null;
+  $('gdKick').textContent=`Game day ${nx.y}`;$('gdTitle').textContent=`Thanksgiving at ${v.name.replace('Donald E. ','')}`;
+  $('gdVenue').textContent=v.name;$('gdAddr').textContent=`${v.sub} · ${v.addr} · Kickoff ${N?.kick||'10:00 a.m.'}`;
+  $('gdMap').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(v.sub+', '+v.addr);
+  if(N&&N.tickets){$('gdTix').href=N.tickets;$('heroTix').href=N.tickets}else{$('gdTix').hidden=true;$('heroTix').hidden=true;$('gdTixTxt').textContent='Ticket details will be posted here closer to the game.'}
+  const F=N&&N.forecast,g=F&&F.days.find(x=>x.game);
+  $('gdFc').innerHTML=g?`<div class="fcmain">${wxIcon(g.cond,g.pop>=70&&/rain/i.test(g.cond)?.2:0)}<div><b>${esc(g.cond)} · ${g.hi}°/${g.lo}°</b><span>Thanksgiving Day · ${g.pop}% chance of precipitation</span></div></div>
+    <div class="fcrow">${F.days.map(x=>`<div class="${x.game?'g':''}"><strong>${esc(x.d)}</strong>${wxIcon(x.cond,0)}<span class="num">${x.hi}°/${x.lo}°</span><br><small>${x.pop}%</small></div>`).join('')}</div>
+    <p class="fcnote">Forecast as of ${esc(F.asOf)}. Updated daily until kickoff.</p>`:'<p>The forecast appears here about a week before the game.</p>';
+  $('heroMeta').textContent=$('heroMeta').textContent.replace(/Stonington, Conn\.|Westerly, R\.I\./,v.town);
+}
+function hero(){
+  const last=P[P.length-1],nx=G.find(g=>g.w==null);
+  const lw=last.W,ls=last.S,lt=last.T;
+  $('sW').textContent=lw;$('sS').textContent=ls;$('sT').textContent=lt;
+  const state=lw===ls?'The all-time series is dead even':lw>ls?`Westerly leads the all-time series by ${lw-ls}`:`Stonington leads the all-time series by ${ls-lw}`;
+  $('boardNote').textContent=`${state} after ${P.length} games. ${team(last.win)} has won ${last.streak} straight.`;
+  if(nx){
+    const mo={Jan:'01',Feb:'02',Mar:'03',Apr:'04',May:'05',Jun:'06',Jul:'07',Aug:'08',Sep:'09',Oct:'10',Nov:'11',Dec:'12'},m=(nx.d||'').match(/(\w{3}) (\d+), (\d{4})/);
+    if(m){KICK=new Date(`${m[3]}-${mo[m[1]]}-${m[2].padStart(2,'0')}T10:00:00-05:00`);const town=/Augeri/.test(nx.field||'')?'Westerly, R.I.':'Pawcatuck, Conn.',wd=KICK.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric',timeZone:'America/New_York'});$('heroMeta').textContent=`${nx.field||''}, ${town} · ${wd} · 10 a.m.`;$('cdLabel').textContent=`Kickoff countdown · ${KICK.toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric',timeZone:'America/New_York'})}, 10:00 a.m.`;tick();}
+    const tg=107+(nx.y-2026)-(nx.y>2026?0:0);const prevTie=[...P].slice(0,-1).reverse().find(g=>g.lead===0);
+    $('gameTitle').textContent=`Game ${nx.n}: the ${tg}th Thanksgiving meeting`;
+    $('gameLede').textContent=`${/Augeri/.test(nx.field||'')?'Westerly':'Stonington'} hosts at ${nx.field||'Palmer Field'} on Thanksgiving morning, ${nx.d}. ${lw===ls?`The series is level at ${lw}–${ls}–${lt} for the first time since ${prevTie?prevTie.y:'the early years'}, so the winner takes the all-time lead.`:state+'.'} ${team(last.win)} comes in on ${[8,11,18].includes(last.streak)?'an':'a'} ${last.streak}-game winning streak.`;
+  } else {$('gameTitle').textContent='See you next Thanksgiving';$('gameLede').textContent=state+'.';$('heroMeta').textContent='Every Thanksgiving morning since 1911'}
+  gameday(nx);
+  $('seriesTitle').textContent=`Who led the series after every game, ${P[0].y}–${last.y}`;
+  $('upd').textContent=`Updated ${D.updated}, through the ${last.y} game.`;
+  // recap
+  $('lastTitle').textContent=`${last.y} recap: ${last.win==='W'?`Westerly ${last.w}, Stonington ${last.s}`:last.win==='S'?`Stonington ${last.s}, Westerly ${last.w}`:`Tie ${last.w}–${last.s}`}`;
+  $('lastCard').innerHTML=gameCard(last,false);if(typeof fillStrips==='function')fillStrips();
+  const aw=D.awards.filter(a=>a.y===last.y);
+  $('lastHonors').innerHTML=(aw.length?aw:[]).map(a=>`<div class="pill ${a.t}">${L(a.t)}<div><b>${esc(a.p)}</b><span>${esc(a.a)}</span></div></div>`).join('')||'<p>Awards will be posted after the game.</p>';
+}
+
+function tick(){
+  let ms=KICK-Date.now();
+  if(ms<=0){$('cdLabel').textContent=Date.now()-KICK<4*36e5?'Game in progress at Palmer Field':'Final score coming soon';ms=0}
+  const d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,m=Math.floor(ms/6e4)%60,s=Math.floor(ms/1e3)%60;
+  $('cdD').textContent=d;$('cdH').textContent=String(h).padStart(2,'0');$('cdM').textContent=String(m).padStart(2,'0');$('cdS').textContent=String(s).padStart(2,'0');
+}
+
+function chart(){
+  const s=$('chart'),W=s.clientWidth,H=s.clientHeight;if(!W)return;
+  const pad={l:W<520?28:44,r:14,t:18,b:34},iw=W-pad.l-pad.r,ih=H-pad.t-pad.b;
+  const mx=Math.max(...P.map(g=>Math.abs(g.lead)),4),lim=Math.ceil(mx/5)*5;
+  const y=v=>pad.t+ih/2-v/lim*ih/2,bw=iw/P.length;
+  let o='';
+  for(let v=-lim;v<=lim;v+=5){o+=`<line x1="${pad.l}" x2="${W-pad.r}" y1="${y(v)}" y2="${y(v)}" stroke="${v?'currentColor':'currentColor'}" opacity="${v?.08:.35}"/><text x="${pad.l-6}" y="${y(v)+4}" text-anchor="end" font-size="12" fill="currentColor" opacity=".6">${v>0?'+'+v:v}</text>`}
+  P.forEach((g,i)=>{const x=pad.l+i*bw,v=g.lead,c=v>0?'#1F2A44':v<0?'#6B4423':'#9aa0ad',hh=Math.max(Math.abs(y(v)-y(0)),2);
+    o+=`<rect data-i="${i}" x="${x+bw*.12}" y="${v>=0?y(0)-(v?hh:1):y(0)}" width="${Math.max(bw*.76,1)}" height="${v?hh:2}" fill="${c}" ${v>0?'class="wb"':''}/>`});
+  const step=W<520?20:W<900?10:10;let prev=-99;
+  P.forEach((g,i)=>{if(g.y%step===0&&g.y!==prev&&(g.y-1911)>3){prev=g.y;const x=pad.l+(i+.5)*bw;o+=`<line x1="${x}" x2="${x}" y1="${H-pad.b}" y2="${H-pad.b+5}" stroke="currentColor" opacity=".5"/><text x="${x}" y="${H-10}" text-anchor="middle" font-size="12" fill="currentColor" opacity=".7">${g.y}</text>`}});
+  o+=`<text x="${pad.l+6}" y="${pad.t+12}" font-size="13" fill="currentColor" opacity=".7">Westerly ahead ↑</text><text x="${pad.l+6}" y="${H-pad.b-8}" font-size="13" fill="currentColor" opacity=".7">Stonington ahead ↓</text>`;
+  o+=`<rect id="hit" x="${pad.l}" y="0" width="${iw}" height="${H}" fill="transparent" style="cursor:pointer"/>`;
+  s.innerHTML=o;
+  const idx=e=>{const r=s.getBoundingClientRect();return Math.min(P.length-1,Math.max(0,Math.floor((e.clientX-r.left-pad.l)/bw)))};
+  const hit=s.querySelector('#hit'),tip=$('tip');
+  hit.onmousemove=e=>{const g=P[idx(e)],r=s.getBoundingClientRect();tip.style.opacity=1;tip.style.left=(e.clientX-r.left)+'px';tip.style.top=(e.clientY-r.top)+'px';
+    tip.textContent=`${label(g)}: W ${g.w}–${g.s} S · series ${g.W}–${g.S}–${g.T}`};
+  hit.onmouseleave=()=>tip.style.opacity=0;
+  hit.onclick=e=>{location.hash='g'+P[idx(e)].n};
+}
+function finder(){
+  $('pick').innerHTML=[...G].reverse().map(g=>`<option value="${g.n}">${g.y} · ${g.h==='Other'?'Regular season':g.h}${g.w!=null?` · W ${g.w}–${g.s} S`:' · upcoming'}</option>`).join('');
+  $('pick').onchange=e=>location.hash='g'+e.target.value;
+  $('prev').onclick=()=>step(-1);$('next').onclick=()=>step(1);
+}
+let curN=0;
+function step(d){const n=Math.min(G.length,Math.max(1,curN+d));location.hash='g'+n}
+function show(n,scroll){
+  const g=G.find(x=>x.n===n)||P[P.length-1];curN=g.n;$('pick').value=g.n;
+  $('finderCard').innerHTML=gameCard(g,true);
+  $('prev').disabled=g.n<=1;$('next').disabled=g.n>=G.length;
+  fillStrips();
+  if(scroll)$('finder').scrollIntoView();
+}
+
+function records(set){
+  const ORD=['Most TD passes','Most rushing TDs','Most TD receptions','Most points in a game','Longest TD pass','Longest TD run','Longest TD reception','Longest field goal','Longest INT return for TD','Longest punt return for TD','Longest kickoff return for TD','Longest blocked punt return for TD','Longest fumble return for TD'];
+  const rk=c=>{const i=ORD.indexOf(c);return i<0?99:i};
+  const R=D.records.filter(r=>r.set===set),cats=[...new Set(R.map(r=>r.cat))].sort((x,y)=>rk(x)-rk(y));
+  const unit=c=>/^Longest/.test(c)?' yds':/points/.test(c)?' pts':'';
+  $('cats').innerHTML=cats.map(c=>{
+    const rows=R.filter(r=>r.cat===c).sort((a,b)=>(b.v??-1)-(a.v??-1));
+    return `<div class="cat"><h3>${esc(c)}</h3>${rows.map(r=>{
+      if(r.v==null) return `<div class="rr"><span class="rk">–</span><span>No mark on record</span><span></span></div>`;
+      const rk=1+rows.filter(x=>(x.v??-1)>r.v).length,tie=rows.filter(x=>x.v===r.v).length>1;
+      return `<div class="rr ${r.t} ${rk===1?'top':''}"><span class="rk">${tie?'T-':''}${rk}${['st','nd','rd'][rk-1]||'th'}</span><span><b>${esc(r.p)}</b><small>${esc(team(r.t))} · ${esc(String(r.g).replace(/^'/,''))}</small></span><span class="v num">${r.v}${unit(c)}</span></div>`}).join('')}</div>`}).join('');
+}
+
+function honors(){
+  const ys=[...new Set(D.awards.map(a=>a.y))].sort((a,b)=>b-a);
+  $('years').innerHTML=ys.map(y=>{const g=G.find(x=>x.y===y&&x.h==='Thanksgiving');
+    return `<div class="yr"><div class="yrph" data-y="${y}"></div><h3><a href="#g${g?.n}" style="text-decoration:none">${y}</a></h3>${g&&g.w!=null?`<p style="margin:0 0 6px;color:var(--mute)" class="num">Westerly ${g.w}, Stonington ${g.s}</p>`:''}${D.awards.filter(a=>a.y===y).map(a=>`<div class="aw">${L(a.t)}<div><b>${esc(a.p)}</b><small>${esc(a.a)}</small></div></div>`).join('')}</div>`}).join('');
+}
+
+function history(){
+  const big=(f)=>P.reduce((a,b)=>f(b)>f(a)?b:a);
+  const wb=big(g=>g.w-g.s),sb=big(g=>g.s-g.w);
+  let best={W:{n:0},S:{n:0}};P.forEach(g=>{if(g.win!=='T'&&g.streak>best[g.win].n)best[g.win]={n:g.streak,end:g.y}});
+  const cold=P.filter(g=>g.kt!=null).reduce((a,b)=>b.kt<a.kt?b:a);
+  const pts=P.reduce((a,g)=>[a[0]+g.w,a[1]+g.s],[0,0]);
+  const F=[
+    ['W',`${wb.w}–${wb.s}`,`Biggest Westerly win, ${wb.y}.`],
+    ['S',`${sb.s}–${sb.w}`,`Biggest Stonington win, ${sb.y}.`],
+    ['W',best.W.n,`Longest Westerly winning streak, ending ${best.W.end}.`],
+    ['S',best.S.n,`Longest Stonington winning streak, ending ${best.S.end}.`],
+    ['W',`${cold.kt}°F`,`Coldest kickoff on file, ${cold.y}.`],
+    ['W','2000',`The only overtime game, a 24–17 Westerly win.`],
+    ['S','1965',`The only night game in series history.`],
+    ['W','2020',`No game in 2020 because of COVID-19, the first quiet Thanksgiving since 1922.`]];
+  $('facts').innerHTML=F.map(([t,b,p])=>`<div class="fact ${t}"><b class="num">${esc(b)}</b><p>${esc(p)}</p></div>`).join('');
+  const bar=(lab,arr)=>{const w=arr.filter(g=>g.win==='W').length,s=arr.filter(g=>g.win==='S').length,t=arr.length-w-s,n=arr.length||1;
+    return `<div class="hbar"><span>${lab}</span><div class="bar num">${w?`<span style="width:${w/n*100}%;background:var(--navy)">${w}</span>`:''}${t?`<span style="width:${t/n*100}%;background:#8f95a3">${t}</span>`:''}${s?`<span style="width:${s/n*100}%;background:var(--brown)">${s}</span>`:''}</div></div>`};
+  $('byHol').innerHTML=[['Thanksgiving','Thanksgiving'],['Armistice Day','Armistice Day'],['Other','Regular season']].map(([h,l])=>bar(l,P.filter(g=>g.h===h))).join('')+'<p style="color:var(--mute);font-size:14px">Navy = Westerly wins, grey = ties, brown = Stonington wins. Five 1915–1919 games logged as Thanksgiving may have been played on other dates.</p>';
+  const decs=[...new Set(P.map(g=>Math.floor(g.y/10)*10))];
+  $('byDec').innerHTML=decs.map(d=>bar(d+'s',P.filter(g=>Math.floor(g.y/10)*10===d))).join('');
+}
+
+
+/* ---------- gallery: submissions are reviewed before they appear ---------- */
+const TOPICS={action:'Game action',awards:'Awards',records:'Records',fans:'Fans & tradition',history:'History'};
+const PLACES={home:'Home page',gameday:'Game day',recap:'Last year’s recap',records:'Records section',awards:'Award winners',history:'History'};
+let PH=[],SUB=[],DB=null,AS=null,US=null,UID=null,ADMIN=false,gF='',lbI=-1,lbList=[];
+const purl=x=>x.url||('/_blob/'+x.asset);
+const lastYear=()=>P.length?P[P.length-1].y:0;
+function placed(pl){return PH.filter(p=>(p.place||[]).includes(pl))}
+function fillArt(){
+  const slots=[...document.querySelectorAll('.photoslot')],pref=['history','records','awards'],used=new Set([heroPhoto()?.id]);
+  slots.forEach((el,i)=>{let x=placed(pref[i]).find(p=>!used.has(p.id))||PH.find(p=>!used.has(p.id));if(x)used.add(x.id);
+    el.style.backgroundImage=x?`url("${purl(x)}")`:'';el.style.backgroundPosition=x&&x.pos||'';el.classList.toggle('has',!!x)});
+  document.querySelectorAll('.yrph').forEach(el=>{const x=PH.find(p=>p.year===+el.dataset.y);el.innerHTML=x?`<button type="button" data-id="${esc(x.id)}" class="cover" aria-label="Open ${el.dataset.y} photo"><img src="${esc(purl(x))}" style="object-position:${esc(x.pos||'50% 50%')}" alt=""></button>`:''});
+  document.querySelectorAll('.secph').forEach(el=>{const pl=el.dataset.place;let ps=placed(pl);if(pl==='recap')ps=[...new Map([...ps,...PH.filter(p=>p.year===lastYear())].map(p=>[p.id,p])).values()];
+    el.innerHTML=ps.slice(0,8).map(x=>`<button type="button" data-id="${esc(x.id)}" aria-label="Open photo"><img src="${esc(purl(x))}" style="object-position:${esc(x.pos||'50% 50%')}" alt="${esc(x.caption||'')}"></button>`).join('')})}
+function fillStrips(){fillArt();document.querySelectorAll('.gph').forEach(el=>{const y=+el.dataset.y;const ps=y?PH.filter(x=>x.year===y):[];
+  el.innerHTML=ps.map(x=>`<button type="button" data-id="${esc(x.id)}" aria-label="Open photo"><img src="${esc(purl(x))}" style="object-position:${esc(x.pos||'50% 50%')}" alt="${esc(x.caption||'')}"></button>`).join('')})}
+function heroPhoto(){return placed('home')[0]||null}
+function setHero(){const h=document.querySelector('.hero'),x=heroPhoto();
+  if(x){h.classList.add('photo');h.style.backgroundImage=`url("${purl(x)}")`;h.style.backgroundPosition=x.pos||''}else{h.classList.remove('photo');h.style.backgroundImage='';h.style.backgroundPosition=''}}
+const FILTERS=[['','All'],['t:W','Westerly'],['t:S','Stonington'],['t:B','Both teams'],...Object.entries(TOPICS).map(([k,v])=>['c:'+k,v])];
+function matches(x){if(!gF)return true;const [k,v]=gF.split(':');return k==='t'?x.team===v:(x.topics||[]).includes(v)}
+function renderGallery(){
+  $('chips').innerHTML=FILTERS.map(([k,l])=>`<button class="chip" type="button" data-f="${k}" aria-pressed="${k===gF}">${esc(l)}</button>`).join('');
+  const yrs=[...new Set(PH.map(x=>x.year).filter(Boolean))].sort((a,b)=>b-a),sel=$('gYear'),cur=sel.value;
+  sel.innerHTML='<option value="">All years</option>'+yrs.map(y=>`<option${String(y)===cur?' selected':''}>${y}</option>`).join('');
+  lbList=PH.filter(x=>(!sel.value||x.year===+sel.value)&&matches(x));
+  $('photos').innerHTML=lbList.length?`<div class="grid">${lbList.map((x,i)=>`<button class="ph" type="button" data-i="${i}"><img src="${esc(purl(x))}" style="object-position:${esc(x.pos||'50% 50%')}" alt="${esc(x.caption||'Rivalry photo')}"><span class="tag" style="background:${x.team==='W'?'var(--navy)':x.team==='S'?'var(--brown)':'#9aa0ad'}"></span><figcaption>${esc(x.caption||'')}${x.year?` · ${x.year}`:''}</figcaption></button>`).join('')}</div>`
+   :`<p class="empty">${PH.length?'No photos match this filter.':'No photos yet.'+(AS?' Submit the first one above.':'')}</p>`;
+  fillStrips();setHero();
+}
+document.addEventListener('click',e=>{const c=e.target.closest('.chip[data-f]');if(c){gF=c.dataset.f;renderGallery()}});
+async function names(ids){if(!US||!ids.length)return{};try{return await US.profiles([...new Set(ids)])}catch(e){return{}}}
+async function openLb(x){
+  lbI=lbList.indexOf(x);if(lbI<0){lbList=PH;lbI=PH.indexOf(x)}
+  $('lbImg').src=purl(x);$('lbImg').alt=x.caption||'Rivalry photo';$('lbCap').textContent=x.caption||'';
+  const nm=x.by?(await names([x.by]))[x.by]?.name:'';
+  $('lbMeta').textContent=[x.year?`${x.year} game`:'',{W:'Westerly',S:'Stonington',B:'Both teams'}[x.team]||'',...(x.topics||[]).map(t=>TOPICS[t]),nm?`Photo from ${nm}`:''].filter(Boolean).join(' · ');
+  $('lbDel').hidden=!ADMIN;$('lbFeat').hidden=!ADMIN;$('lbFeat').textContent=(x.place||[]).includes('home')?'Remove from home page':'Feature on home page';
+  $('lb').hidden=false;$('lbClose').focus();
+}
+function closeLb(){$('lb').hidden=true}
+document.addEventListener('click',e=>{const b=e.target.closest('.ph,.gph button,.yrph button,.secph button');if(!b)return;
+  const x=b.dataset.i!=null?lbList[+b.dataset.i]:PH.find(p=>p.id===b.dataset.id);if(!x)return;
+  if(b.dataset.id){const box=b.closest('.secph,.gph');lbList=box?[...box.querySelectorAll('button')].map(q=>PH.find(p=>p.id===q.dataset.id)).filter(Boolean):PH.filter(p=>p.year===x.year)}openLb(x)});
+$('lbClose').onclick=closeLb;
+$('lbPrev').onclick=()=>{if(lbList.length)openLb(lbList[(lbI-1+lbList.length)%lbList.length])};
+$('lbNext').onclick=()=>{if(lbList.length)openLb(lbList[(lbI+1)%lbList.length])};
+document.addEventListener('keydown',e=>{if($('lb').hidden)return;if(e.key==='Escape')closeLb();if(e.key==='ArrowRight')$('lbNext').click();if(e.key==='ArrowLeft')$('lbPrev').click()});
+$('lbDel').onclick=async()=>{const x=lbList[lbI];if(!x)return;const b=$('lbDel');
+  if(!b.dataset.arm){b.dataset.arm=1;b.textContent='Tap again to remove';setTimeout(()=>{delete b.dataset.arm;b.textContent='Remove from site'},3000);return}
+  delete b.dataset.arm;try{await DB.collection('photos').doc(x.id).delete();closeLb()}catch(e){b.textContent='Could not remove'}};
+$('lbFeat').onclick=async()=>{const x=lbList[lbI];if(!x)return;const pl=new Set(x.place||[]);pl.has('home')?pl.delete('home'):pl.add('home');
+  try{await DB.collection('photos').doc(x.id).update({place:[...pl]});closeLb()}catch(e){$('lbFeat').textContent='Could not change'}};
+$('gYear').onchange=renderGallery;
+function shrink(file){return new Promise(res=>{const img=new Image(),u=URL.createObjectURL(file);
+  img.onload=()=>{const m=2000,k=Math.min(1,m/Math.max(img.width,img.height));if(k===1&&file.size<2.5e6){URL.revokeObjectURL(u);return res(file)}
+    const c=document.createElement('canvas');c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);c.getContext('2d').drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(u);c.toBlob(b=>res(b||file),'image/jpeg',.86)};
+  img.onerror=()=>{URL.revokeObjectURL(u);res(file)};img.src=u})}
+const checked=(root,n)=>[...root.querySelectorAll(`input[name="${n}"]:checked`)].map(i=>i.value);
+$('upForm')&&$('upForm').addEventListener('submit',async e=>{e.preventDefault();const fs=[...$('upFiles').files].filter(f=>/^image\//.test(f.type));if(!fs.length){$('upMsg').textContent='Choose at least one image.';return}
+  const btn=$('upBtn');btn.disabled=true;let done=0;
+  const meta={caption:$('upCap').value.trim().slice(0,140),year:+$('upYear').value||null,team:$('upTeam').value,topics:checked($('upForm'),'topic'),by:UID};
+  const pl=checked($('upForm'),'place');
+  if(!UID){$('upMsg').textContent='Sign in to claude.ai to submit photos.';btn.disabled=false;return}
+  try{const ref=DB.doc('submissions/'+UID);for(const f of fs){$('upMsg').textContent=`Uploading ${done+1} of ${fs.length}…`;const r=await AS.upload(await shrink(f));
+      const cur=await ref.get(),items={...((cur.exists&&cur.data().items)||{})},id='s'+Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+      items[id]={...meta,asset:r.id,url:r.url,suggest:pl,at:Date.now()};await ref.set({items});done++}
+    $('upMsg').textContent=`Thanks! ${done} photo${done>1?'s are':' is'} waiting for review and will appear once approved.`;$('upForm').reset();
+  }catch(err){$('upMsg').textContent=(done?`Sent ${done}, then `:'')+(err&&err.code==='quota_exceeded'?'the gallery is full.':'the upload failed. Please try again.')}
+  btn.disabled=false});
+function cbs(name,obj,sel,id){return Object.entries(obj).map(([k,v])=>`<label class="ck"><input type="checkbox" name="${name}-${id}" value="${k}"${sel.includes(k)?' checked':''}> ${esc(v)}</label>`).join('')}
+async function renderReview(){
+  const box=$('reviewBox');
+  if(ADMIN){const nm=await names(SUB.map(x=>x.by).filter(Boolean));box.hidden=false;
+    $('navReview').hidden=!SUB.length;$('navReview').textContent=`Review (${SUB.length})`;
+    box.innerHTML=`<div class="rq"><h3>Waiting for review (${SUB.length})</h3>${SUB.length?'':'<p style="color:var(--mute);margin:6px 0 0">Nothing to review. New submissions appear here.</p>'}${SUB.map(x=>`<form class="rqi" data-id="${esc(x.id)}">
+      <img src="${esc(purl(x))}" style="object-position:${esc(x.pos||'50% 50%')}" alt="">
+      <div class="rqf"><p class="who">From ${esc(nm[x.by]?.name||'someone')} · ${new Date(x.at).toLocaleDateString()}</p>
+        <label>Caption<input type="text" name="cap" maxlength="140" value="${esc(x.caption||'')}"></label>
+        <div class="row2"><label>Game year<select name="yr"><option value="">Not a specific game</option>${[...new Set(P.map(g=>g.y))].reverse().map(y=>`<option${x.year===y?' selected':''}>${y}</option>`).join('')}</select></label>
+        <label>Team<select name="tm">${[['B','Both teams'],['W','Westerly'],['S','Stonington']].map(([k,v])=>`<option value="${k}"${x.team===k?' selected':''}>${v}</option>`).join('')}</select></label></div>
+        <fieldset class="fs"><legend>Topics</legend>${cbs('t',TOPICS,x.topics||[],x.id)}</fieldset>
+        <fieldset class="fs"><legend>Show on (suggested spots are pre-checked)</legend>${cbs('p',PLACES,x.suggest||[],x.id)}</fieldset>
+        <div class="acts"><button class="solidb" type="submit">Approve</button><button type="button" class="rej">Reject</button></div></div></form>`).join('')}</div>`;
+  } else if(AS&&UID){const mine=SUB;$('mine').innerHTML=mine.length?`<p style="margin:12px 0 6px;font-weight:600">Your photos waiting for review</p><div class="gph" style="padding:0">${mine.map(x=>`<img src="${esc(purl(x))}" style="object-position:${esc(x.pos||'50% 50%')}" alt="" style="width:120px;height:90px;object-fit:cover">`).join('')}</div>`:''}
+}
+$('reviewBox')&&$('reviewBox').addEventListener('submit',async e=>{e.preventDefault();const f=e.target,id=f.dataset.id,x=SUB.find(s=>s.id===id);if(!x)return;
+  const btn=f.querySelector('[type=submit]');btn.disabled=true;btn.textContent='Approving…';
+  try{await DB.collection('photos').doc(id).set({asset:x.asset,url:x.url,caption:f.cap.value.trim().slice(0,140),year:+f.yr.value||null,team:f.tm.value,
+      topics:[...f.querySelectorAll(`[name="t-${id}"]:checked`)].map(i=>i.value),place:[...f.querySelectorAll(`[name="p-${id}"]:checked`)].map(i=>i.value),by:x.by||null,at:x.at,approvedAt:Date.now()});
+    await dropSub(x)}catch(err){btn.disabled=false;btn.textContent='Could not approve, try again'}});
+async function dropSub(x){const ref=DB.doc('submissions/'+x.uid),cur=await ref.get(),items={...((cur.exists&&cur.data().items)||{})};delete items[x.id];await ref.set({items})}
+$('reviewBox')&&$('reviewBox').addEventListener('click',async e=>{const b=e.target.closest('.rej');if(!b)return;const id=b.closest('form').dataset.id,x=SUB.find(s=>s.id===id);
+  if(!b.dataset.arm){b.dataset.arm=1;b.textContent='Tap again to reject';setTimeout(()=>{delete b.dataset.arm;b.textContent='Reject'},3000);return}
+  try{await dropSub(x);if(AS&&x)AS.delete(x.asset).catch(()=>{})}catch(err){b.textContent='Could not reject'}});
+async function initGallery(){
+  renderGallery();
+  try{PH=(await fetch('photos.json',{cache:'no-cache'}).then(r=>r.json())).sort((a,b)=>(b.approvedAt||0)-(a.approvedAt||0));renderGallery()}
+  catch(e){$('photos').innerHTML='<p class="empty">Photos can’t be loaded right now.</p>'}
+  const f=D.submitUrl;if(f){$('submitLink').href=f;$('submitWrap').hidden=false}
+}
+
+function ybyr(){
+  const decs=[...new Set(P.map(g=>Math.floor(g.y/10)*10))].reverse(),C={W:'var(--navy)',S:'var(--brown)',T:'#8f95a3'};
+  $('ybyr').innerHTML=decs.map((d,k)=>{const gs=P.filter(g=>Math.floor(g.y/10)*10===d),w=gs.filter(g=>g.win==='W').length,st=gs.filter(g=>g.win==='S').length,t=gs.length-w-st;
+    return `<details class="dec"${k===0?' open':''}><summary><h4>${d}s</h4><span class="rec"><span style="background:${C.W}">Westerly ${w}</span>${t?`<span style="background:${C.T}">Tie ${t}</span>`:''}<span style="background:${C.S}">Stonington ${st}</span></span></summary>
+    <table class="yt"><thead><tr><th>Year</th><th>Occasion</th><th>Score</th><th>Result</th><th>Series after</th><th>Notes</th></tr></thead><tbody>${[...gs].reverse().map(g=>`<tr class="go" data-n="${g.n}"><td><a href="#g${g.n}">${g.y}</a></td><td>${g.h==='Other'?'Regular season':esc(g.h)}</td><td class="sc"><span class="${g.win==='W'?'w':''}">W ${g.w}</span> – <span class="${g.win==='S'?'s':''}">S ${g.s}</span></td><td><span class="pill2" style="background:${C[g.win]}">${g.win==='T'?'Tie':team(g.win)}</span></td><td class="num">${g.W}–${g.S}–${g.T}</td><td style="color:var(--mute)">${esc((g.note||'').split('. ')[0].slice(0,90))}</td></tr>`).join('')}</tbody></table></details>`}).join('');
+}
+document.addEventListener('click',e=>{const r=e.target.closest('tr.go');if(r&&!e.target.closest('a'))location.hash='g'+r.dataset.n});
+
+function route(scroll){const m=location.hash.match(/^#g(\d+)$/);if(m)show(+m[1],scroll);}
+
+fetch('data.json').then(r=>r.json()).then(d=>{
+  D=d;G=d.games;compute();hero();finder();show(P[P.length-1].n);records('all');honors();history();ybyr();
+  const ro=new ResizeObserver(chart);ro.observe($('fig'));
+  route(true);window.addEventListener('hashchange',()=>route(true));
+  initGallery();
+  document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));records(b.dataset.set)});
+}).catch(()=>{$('boardNote').textContent='The game data could not be loaded. Please reload the page.'});
+tick();setInterval(tick,1000);
+}
+</script>
+</body>
+</html>
