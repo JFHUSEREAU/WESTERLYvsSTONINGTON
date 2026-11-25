@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Westerly vs. Stonington</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Barlow:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
 <style>
 /* VOICE: a proud hometown bowl-game site, official and celebratory, like the Rose Bowl's but for a 1911 Thanksgiving rivalry.
    IDEA: the game-day program and the stadium scoreboard; every section reads like a page of the program.
@@ -284,12 +284,94 @@ header{border-bottom:0;box-shadow:0 4px 0 #fff,0 8px 0 var(--brown)}
 @media(max-width:600px){.yt thead{display:none}.yt tr{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:4px 12px;padding:10px 14px;border-top:1px solid var(--line);align-items:center}
 .yt td{border:0;padding:0}.yt td:nth-child(2),.yt td:nth-child(6){grid-column:1/-1;font-size:14px}.yt td:nth-child(6):empty{display:none}
 .yt td:nth-child(5)::before{content:"Series ";color:var(--mute);font-size:13px}.dec summary{grid-template-columns:minmax(0,1fr)}.dec summary .rec{flex-wrap:wrap}}
+
+/* ===== Historic edition: white paper, black ink, team colours only for teams ===== */
+:root{--ink:light-dark(#141414,#efece6);--bg:light-dark(#ffffff,#121212);--line:light-dark(#d9d9d9,#333);--mute:light-dark(#5a5a5a,#a8a8a8);--panel:light-dark(#fff,#1a1a1a)}
+body{font-family:Barlow,system-ui,sans-serif}
+h2{font:900 clamp(34px,4.8vw,58px)/1.02 'Playfair Display',Georgia,serif;text-transform:none;letter-spacing:-.005em}
+.lede,.note,.fact p,.mom p,.share p,.sempty p,.gdc p{font-family:'Source Serif 4',Georgia,serif}
+.lede{font-size:18px;color:light-dark(#3a3a3a,#c9c6c0)}.lede.big{font-size:clamp(18px,1.6vw,21px);max-width:60ch}
+.kick,.kick.tag,.alt .kick,.board .kick,.hero .kick{display:block;width:max-content;max-width:100%;background:none;color:inherit;border-top:3px solid currentColor;border-bottom:1px solid currentColor;padding:6px 0 5px;font:700 14px/1.2 'Barlow Condensed',sans-serif;letter-spacing:.14em;text-transform:uppercase;margin:0 0 16px}
+.band+.band:not(.board){border-top:0}
+.band:not(.board):not(.gameday):not(.hero){border-bottom:1px solid var(--line)}
+.band>.wrap>h2{padding-bottom:4px}
+header{background:#fff;color:#111;box-shadow:none;border-bottom:4px double #111}
+:root[data-theme=dark] header{background:#121212;color:#eee;border-bottom-color:#eee}
+nav a:hover,nav a:focus-visible{background:#111;color:#fff}
+.brand{font-family:'Playfair Display',Georgia,serif;font-weight:900;text-transform:none;font-size:22px;letter-spacing:0}
+.brand .logo{box-shadow:none;border:1px solid #111}
+.hero{background:#161616}
+.hero:not(.photo){background:radial-gradient(ellipse at 70% 30%,#2b2b2b,#0e0e0e 70%)}
+.heroshade,.hero.photo .heroshade,.hero:not(.photo) .heroshade{background:linear-gradient(180deg,rgba(0,0,0,.05) 20%,rgba(0,0,0,.35) 50%,rgba(0,0,0,.9) 100%)}
+.hero h1{font-family:'Playfair Display',Georgia,serif;font-weight:900;text-transform:none;letter-spacing:-.01em;font-size:clamp(40px,9.4vw,132px);line-height:.95}
+.hero h1 .vs{font:italic 700 .3em/1 'Playfair Display',Georgia,serif;background:none;color:#fff;border-top:2px solid #fff;border-bottom:2px solid #fff;padding:.12em .1em;text-transform:lowercase}
+.hero .kick{color:#fff}
+.hero .meta{font:italic 400 clamp(17px,1.8vw,22px) 'Source Serif 4',Georgia,serif;text-transform:none;letter-spacing:0}
+.btn{border-radius:0}.btn.solid{background:#fff;color:#111}
+.btn.ink,.solidb{background:#111;color:#fff;border-color:#111}
+.board{background:#111}
+.series .t{color:#111}
+.gameday{background:var(--bg);color:var(--ink)}.gameday h2{color:var(--ink)}
+.gdc{background:var(--panel);border:1px solid var(--ink)}.gdc p{color:var(--mute)}.venue{color:var(--ink)!important}
+.gdc .btn{border-color:var(--ink);color:var(--ink)}.gdc .btn.solid{background:#111;color:#fff;border-color:#111}
+.fcrow div{background:light-dark(#f2f2f2,#222)}.fcrow div.g{background:#111;color:#fff}.fcnote{color:var(--mute)}
+.card .art.photoslot{background-color:#1b1b1b!important}
+.card h3,.yr h3,.cat h3{font-family:'Playfair Display',Georgia,serif;text-transform:none;font-weight:800}
+.cat h3{background:#111;font-size:20px}
+.tabs button[aria-selected=true],.chip[aria-pressed=true]{background:#111;border-color:#111;color:#fff}
+.gchead{background:#111}
+.yt tr.go:hover td{background:light-dark(#f3f3f3,#222)}
+.dec summary h4{font-family:'Playfair Display',Georgia,serif;text-transform:none;font-weight:900}
+.fact{border-left-color:#111;background:var(--panel)}.fact.S,.fact.W{border-left-color:#111}
+.fact b{font-family:'Playfair Display',Georgia,serif}
+footer{background:#111;border-top:4px double #fff}
+footer p:first-child{font-family:'Playfair Display',Georgia,serif!important;text-transform:none}
+/* stories */
+.sub{font:700 15px/1.2 'Barlow Condensed',sans-serif;letter-spacing:.14em;text-transform:uppercase;margin:44px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--ink)}
+.moments{list-style:none;margin:0;padding:0}
+.mom{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:8px 28px;padding:22px 0;border-bottom:1px solid var(--line);align-items:start}
+.my{font:900 clamp(40px,5vw,60px)/.9 'Playfair Display',Georgia,serif}
+.mom h4{margin:0 0 6px;font:800 24px/1.15 'Playfair Display',Georgia,serif}
+.mom p{margin:0;font-size:17px;line-height:1.6;max-width:66ch}
+.more{display:inline-block;margin-top:8px;font:700 15px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.mph{width:180px;aspect-ratio:3/4;padding:0;border:1px solid var(--ink);cursor:pointer;overflow:hidden;background:#000}
+.mph img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05)}
+.storygrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px}
+.scard{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:inherit;border-top:3px solid var(--ink);padding-top:12px}
+.sph{aspect-ratio:3/2;overflow:hidden;margin-bottom:6px}.sph img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:filter .25s}
+.scard:hover .sph img,.scard:focus-visible .sph img{filter:none}
+.stag{font:700 13px 'Barlow Condensed',sans-serif;letter-spacing:.1em;text-transform:uppercase}.stag.tW{color:var(--navyInk)}.stag.tS{color:var(--brownInk)}
+.stt{font:800 26px/1.1 'Playfair Display',Georgia,serif}
+.sby{font:italic 15px 'Source Serif 4',Georgia,serif;color:var(--mute)}
+.sex{font:16px/1.55 'Source Serif 4',Georgia,serif}
+.sempty{grid-column:1/-1;border:1px solid var(--ink);padding:34px;text-align:center}
+.sempty .q{font:italic 700 clamp(24px,3vw,34px)/1.2 'Playfair Display',Georgia,serif;margin:0 0 8px}
+.share{display:grid;grid-template-columns:minmax(0,1.4fr) auto;gap:24px;align-items:center;margin-top:36px;padding:28px;border:4px double var(--ink)}
+.share h3{font:900 32px/1.05 'Playfair Display',Georgia,serif;margin:0 0 6px}.share p{margin:0;font-size:17px}
+.soon{font:italic 16px 'Source Serif 4',Georgia,serif;color:var(--mute)}
+#reader{position:fixed;inset:0;z-index:60;background:rgba(10,10,10,.75);overflow-y:auto;padding:clamp(0px,3vw,40px) 0}
+#reader[hidden]{display:none}
+.rdin{max-width:760px;margin:0 auto;background:var(--bg);padding:clamp(22px,5vw,56px);position:relative;min-height:100%}
+.rdx{position:sticky;top:0;float:right;background:#111;color:#fff;border-color:#111}
+#rdBody h1{font:900 clamp(34px,5vw,54px)/1.02 'Playfair Display',Georgia,serif;margin:0 0 10px}
+.rby{font:italic 18px 'Source Serif 4',Georgia,serif;color:var(--mute);margin:0 0 24px}
+.rtext p{font:19px/1.7 'Source Serif 4',Georgia,serif;margin:0 0 1.1em}
+.rtext p:first-child::first-letter{float:left;font:900 4.2em/.82 'Playfair Display',Georgia,serif;padding:.06em .1em 0 0}
+#rdBody figure{margin:24px 0}#rdBody figure img{width:100%;display:block}#rdBody figcaption{font:italic 15px 'Source Serif 4',Georgia,serif;color:var(--mute);margin-top:6px}
+@media(max-width:700px){.mom{grid-template-columns:minmax(0,1fr)}.mph{width:100%;aspect-ratio:4/3}.share{grid-template-columns:minmax(0,1fr)}}
+
+[hidden]{display:none!important}
+.share h3,#rdBody h1,.gdc h3,.mom h4,.stt,.rq h3{text-transform:none}
+.gdc h3{font:900 28px/1.05 'Playfair Display',Georgia,serif}
+.venue{font:800 22px/1.1 'Playfair Display',Georgia,serif!important;text-transform:none!important}
+.fcmain b{font:800 26px/1.05 'Playfair Display',Georgia,serif;text-transform:none}
+.sb .team{font-family:'Playfair Display',Georgia,serif;text-transform:none;font-weight:800}
 </style>
 </head>
 <body>
 <header><div class="navin">
   <a class="brand" href="#top"><img class="logo" src="img/westerly.png" alt="Westerly Bulldogs"><img class="logo" src="img/stonington.png" alt="Stonington Bears"><span>Westerly vs. Stonington</span></a>
-  <nav class="scroll" aria-label="Sections"><a href="#gameday">2026 Game</a><a href="#last">2025 Recap</a><a href="#series">Series</a><a href="#finder">Game Finder</a><a href="#records">Records</a><a href="#honors">Award Winners</a><a href="#history">History</a><a href="#gallery">Gallery</a></nav>
+  <nav class="scroll" aria-label="Sections"><a href="#gameday">2026 Game</a><a href="#stories">Stories</a><a href="#last">2025 Recap</a><a href="#series">Series</a><a href="#finder">Game Finder</a><a href="#records">Records</a><a href="#honors">Award Winners</a><a href="#history">History</a><a href="#gallery">Gallery</a></nav>
 </div></header>
 
 <section class="hero" id="top">
@@ -297,7 +379,7 @@ header{border-bottom:0;box-shadow:0 4px 0 #fff,0 8px 0 var(--brown)}
     <p class="kick tag">The Thanksgiving Day rivalry · Since 1911</p>
     <h1><span class="row" style="font-size:1em;margin:0;opacity:1"><img class="logo" src="img/westerly.png" alt="">Westerly</span><span class="vs">vs.</span><span class="row" style="font-size:1em;margin:0;opacity:1"><img class="logo" src="img/stonington.png" alt="">Stonington</span></h1>
     <p class="meta" id="heroMeta">Palmer Field, Stonington, Conn. · Thursday, November 26, 2026 · 10 a.m.</p>
-    <a class="btn solid" id="heroTix" href="https://gofan.co/event/6778173" target="_blank" rel="noopener">Buy tickets</a><a class="btn" href="#gameday">Game day</a><a class="btn" href="#finder">Relive any game</a><a class="btn" href="#gallery">Photo gallery</a>
+    <a class="btn solid" id="heroTix" href="https://gofan.co/event/6778173" target="_blank" rel="noopener">Buy tickets</a><a class="btn" href="#stories">Read the stories</a><a class="btn" href="#finder">Relive any game</a><a class="btn" href="#gallery">Photo gallery</a>
   </div>
 </section>
 
@@ -323,6 +405,20 @@ header{border-bottom:0;box-shadow:0 4px 0 #fff,0 8px 0 var(--brown)}
     <div class="gdc fc"><h3>Forecast</h3><div id="gdFc"></div></div>
   </div>
 </div></section>
+<section class="band stories" id="stories"><div class="wrap">
+  <p class="kick">Stories of the rivalry</p>
+  <h2>Every Thanksgiving has a story.</h2>
+  <p class="lede big">For more than a century, players, coaches, parents and fans have spent Thanksgiving morning at Augeri Field and Palmer Field. These are the moments that made the rivalry, and the stories of the people who lived them.</p>
+  <h3 class="sub">Moments that made the rivalry</h3>
+  <ol class="moments" id="moments"></ol>
+  <h3 class="sub">Your stories</h3>
+  <div class="storygrid" id="storyList"></div>
+  <div class="share">
+    <div><h3>Tell your story</h3><p>Played in the game? Coached it, cheered it, marched in the band, or never missed one? Share your memory and your photos. Every story is read and approved before it appears here.</p></div>
+    <div><a id="storyBtn" class="btn ink" target="_blank" rel="noopener" hidden>Share your story</a><p id="storySoon" class="soon">Story submissions open soon.</p></div>
+  </div>
+</div></section>
+<div id="reader" hidden role="dialog" aria-modal="true" aria-label="Story"><div class="rdin"><button type="button" id="rdClose" class="rdx">Close ✕</button><article id="rdBody"></article></div></div>
 <section class="band"><div class="wrap">
   <p class="kick" id="gameKick">The next game</p>
   <h2 id="gameTitle">Game day at Palmer Field</h2>
@@ -562,7 +658,7 @@ function history(){
     ['W',`${cold.kt}°F`,`Coldest kickoff on file, ${cold.y}.`],
     ['W','2000',`The only overtime game, a 24–17 Westerly win.`],
     ['S','1965',`The only night game in series history.`],
-    ['W','2020',`No game in 2020 because of COVID-19, the first quiet Thanksgiving since 1922.`]];
+    ['W','2020',`No game in 2020 because of COVID-19, the first Thanksgiving without it in a century.`]];
   $('facts').innerHTML=F.map(([t,b,p])=>`<div class="fact ${t}"><b class="num">${esc(b)}</b><p>${esc(p)}</p></div>`).join('');
   const bar=(lab,arr)=>{const w=arr.filter(g=>g.win==='W').length,s=arr.filter(g=>g.win==='S').length,t=arr.length-w-s,n=arr.length||1;
     return `<div class="hbar"><span>${lab}</span><div class="bar num">${w?`<span style="width:${w/n*100}%;background:var(--navy)">${w}</span>`:''}${t?`<span style="width:${t/n*100}%;background:#8f95a3">${t}</span>`:''}${s?`<span style="width:${s/n*100}%;background:var(--brown)">${s}</span>`:''}</div></div>`};
@@ -672,6 +768,7 @@ async function initGallery(){
   try{PH=(await fetch('photos.json',{cache:'no-cache'}).then(r=>r.json())).sort((a,b)=>(b.approvedAt||0)-(a.approvedAt||0));renderGallery()}
   catch(e){$('photos').innerHTML='<p class="empty">Photos can’t be loaded right now.</p>'}
   const f=D.submitUrl;if(f){$('submitLink').href=f;$('submitWrap').hidden=false}
+  renderMoments();
 }
 
 function ybyr(){
@@ -682,13 +779,41 @@ function ybyr(){
 }
 document.addEventListener('click',e=>{const r=e.target.closest('tr.go');if(r&&!e.target.closest('a'))location.hash='g'+r.dataset.n});
 
-function route(scroll){const m=location.hash.match(/^#g(\d+)$/);if(m)show(+m[1],scroll);}
+/* ---------- stories & moments ---------- */
+let ST=[];
+const TEAMN={W:'Westerly',S:'Stonington',B:'Both towns'};
+function gameFor(y){return G.find(g=>g.y===y&&g.h==='Thanksgiving')||G.find(g=>g.y===y)}
+function renderMoments(){
+  const M=D.moments||[];
+  $('moments').innerHTML=M.map(m=>{const g=m.g?gameFor(m.g):null,ph=m.photo?PH.find(p=>p.id===m.photo):null;
+    return `<li class="mom"><div class="my">${m.y}</div><div class="mb"><h4>${esc(m.t)}</h4><p>${esc(m.b)}</p>${g?`<a class="more" href="#g${g.n}">See the ${m.y} game →</a>`:''}</div>${ph?`<button type="button" class="mph" data-id="${esc(ph.id)}" aria-label="Open photo"><img src="${esc(purl(ph))}" alt="${esc(ph.caption||'')}" style="object-position:${esc(ph.pos||'50% 30%')}"></button>`:''}</li>`}).join('');
+}
+function excerpt(t,n=220){t=String(t||'').replace(/\s+/g,' ').trim();return t.length>n?t.slice(0,t.lastIndexOf(' ',n))+'…':t}
+function renderStories(){
+  const u=D.storyUrl||D.submitUrl;if(u){$('storyBtn').href=u;$('storyBtn').hidden=false;$('storySoon').hidden=true}
+  $('storyList').innerHTML=ST.length?ST.map(x=>{const p=(x.photos||[])[0];
+    return `<a class="scard" href="#story-${esc(x.id)}">${p?`<span class="sph"><img src="${esc(p.url)}" alt="" style="object-position:${esc(p.pos||'50% 35%')}"></span>`:''}<span class="stag t${esc(x.team||'B')}">${esc(TEAMN[x.team]||'Both towns')}${x.years?' · '+esc(x.years):''}</span><span class="stt">${esc(x.title)}</span><span class="sby">By ${esc(x.author||'A fan')}${x.role?', '+esc(x.role):''}</span><span class="sex">${esc(excerpt(x.text))}</span><span class="more">Read the story →</span></a>`}).join('')
+   :`<div class="sempty"><p class="q">“The first story could be yours.”</p><p>Stories from players, coaches, families and fans will appear here once they are shared and approved.</p></div>`;
+}
+function openStory(id){const x=ST.find(s=>s.id===id);if(!x)return;
+  const paras=String(x.text||'').split(/\n\s*\n/).map(p=>`<p>${esc(p.trim())}</p>`).join('');
+  $('rdBody').innerHTML=`<p class="kick">${esc(TEAMN[x.team]||'Both towns')}${x.years?' · '+esc(x.years):''}</p><h1>${esc(x.title)}</h1><p class="rby">By ${esc(x.author||'A fan')}${x.role?', '+esc(x.role):''}</p>${(x.photos||[]).slice(0,1).map(p=>`<figure><img src="${esc(p.url)}" alt="${esc(p.caption||'')}">${p.caption?`<figcaption>${esc(p.caption)}</figcaption>`:''}</figure>`).join('')}<div class="rtext">${paras}</div>${(x.photos||[]).slice(1).map(p=>`<figure><img src="${esc(p.url)}" alt="${esc(p.caption||'')}">${p.caption?`<figcaption>${esc(p.caption)}</figcaption>`:''}</figure>`).join('')}`;
+  $('reader').hidden=false;document.body.style.overflow='hidden';$('rdClose').focus()}
+function closeStory(){$('reader').hidden=true;document.body.style.overflow='';if(/^#story-/.test(location.hash))history.replaceState(null,'','#stories')}
+$('rdClose').onclick=closeStory;
+$('reader').addEventListener('click',e=>{if(e.target.id==='reader')closeStory()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('reader').hidden)closeStory()});
+document.addEventListener('click',e=>{const b=e.target.closest('.mph');if(!b)return;const x=PH.find(p=>p.id===b.dataset.id);if(x){lbList=[x];openLb(x)}});
+async function initStories(){try{ST=(await fetch('stories.json',{cache:'no-cache'}).then(r=>r.json())).sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)||(b.approvedAt||0)-(a.approvedAt||0))}catch(e){ST=[]}
+  renderStories();const m=location.hash.match(/^#story-(.+)$/);if(m)openStory(m[1])}
+
+function route(scroll){const m=location.hash.match(/^#g(\d+)$/);if(m)show(+m[1],scroll);const st=location.hash.match(/^#story-(.+)$/);if(st)openStory(st[1]);}
 
 fetch('data.json').then(r=>r.json()).then(d=>{
   D=d;G=d.games;compute();hero();finder();show(P[P.length-1].n);records('all');honors();history();ybyr();
   const ro=new ResizeObserver(chart);ro.observe($('fig'));
   route(true);window.addEventListener('hashchange',()=>route(true));
-  initGallery();
+  renderMoments();initGallery();initStories();
   document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));records(b.dataset.set)});
 }).catch(()=>{$('boardNote').textContent='The game data could not be loaded. Please reload the page.'});
 tick();setInterval(tick,1000);
