@@ -366,6 +366,25 @@ footer p:first-child{font-family:'Playfair Display',Georgia,serif!important;text
 .venue{font:800 22px/1.1 'Playfair Display',Georgia,serif!important;text-transform:none!important}
 .fcmain b{font:800 26px/1.05 'Playfair Display',Georgia,serif;text-transform:none}
 .sb .team{font-family:'Playfair Display',Georgia,serif;text-transform:none;font-weight:800}
+
+/* tighter hero + band below */
+.heroin{padding-top:clamp(96px,13vw,180px);padding-bottom:clamp(28px,4vw,44px)}
+.hero h1{display:flex;flex-direction:column;width:max-content;max-width:100%;line-height:.88;margin:0}
+.hero h1 .row{margin:0!important;line-height:.88}
+.hero h1 .vs{display:block;align-self:center;margin:.06em 0 .1em!important;padding:.08em .14em}
+.hero .kick{margin-bottom:10px}
+.hero .meta{margin:14px 0 18px}
+.board{padding-top:clamp(22px,3vw,36px);padding-bottom:clamp(22px,3vw,36px)}
+.boardin{gap:clamp(16px,3vw,40px)}
+.boardnote{margin-top:-4px}
+.gameday{padding-top:clamp(28px,3.5vw,48px)}
+.gameday h2{margin-bottom:0}.gd{margin-top:16px}
+
+.boardin{align-items:end}.boardnote{margin-top:0}
+.hero h1{font-size:clamp(44px,12.5vw,132px)}
+.hero h1 .vs{font-size:max(16px,.3em)}
+@media(max-width:600px){.heroin .btn{min-height:42px;padding:0 14px;font-size:15px;margin:0 6px 8px 0}.heroin{padding-top:72px}}
+.boardin{row-gap:14px}
 </style>
 </head>
 <body>
