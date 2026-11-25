@@ -549,7 +549,7 @@ function compute(){
   G.forEach(g=>{ if(g.w==null) return; if(g.w>g.s){w++;g.win='W'}else if(g.s>g.w){s++;g.win='S'}else{t++;g.win='T'} g.W=w;g.S=s;g.T=t;g.lead=w-s; P.push(g)});
   // streaks
   let cur=null,run=0;P.forEach(g=>{ if(g.win===cur) run++; else {cur=g.win;run=1} g.streak=run;});
-  G.forEach(g=>{g.aw=D.awards.filter(a=>a.y===g.y&&g.h==='Thanksgiving')});
+  G.forEach(g=>{g.aw=awSort(D.awards.filter(a=>a.y===g.y&&g.h==='Thanksgiving'))});
 }
 function label(g){return `${g.y} ${g.h==='Thanksgiving'?'Thanksgiving':g.h==='Armistice Day'?'Armistice Day':'regular season'}`}
 
@@ -600,7 +600,7 @@ function hero(){
   // recap
   $('lastTitle').textContent=`${last.y} recap: ${last.win==='W'?`Westerly ${last.w}, Stonington ${last.s}`:last.win==='S'?`Stonington ${last.s}, Westerly ${last.w}`:`Tie ${last.w}–${last.s}`}`;
   $('lastCard').innerHTML=gameCard(last,false);if(typeof fillStrips==='function')fillStrips();
-  const aw=D.awards.filter(a=>a.y===last.y);
+  const aw=awSort(D.awards.filter(a=>a.y===last.y));
   $('lastHonors').innerHTML=(aw.length?aw:[]).map(a=>`<div class="pill ${a.t}">${L(a.t)}<div><b>${esc(a.p)}</b><span>${esc(a.a)}</span></div></div>`).join('')||'<p>Awards will be posted after the game.</p>';
 }
 
@@ -663,7 +663,7 @@ function records(set){
 function honors(){
   const ys=[...new Set(D.awards.map(a=>a.y))].sort((a,b)=>b-a);
   $('years').innerHTML=ys.map(y=>{const g=G.find(x=>x.y===y&&x.h==='Thanksgiving');
-    return `<div class="yr"><div class="yrph" data-y="${y}"></div><h3><a href="#g${g?.n}" style="text-decoration:none">${y}</a></h3>${g&&g.w!=null?`<p style="margin:0 0 6px;color:var(--mute)" class="num">Westerly ${g.w}, Stonington ${g.s}</p>`:''}${D.awards.filter(a=>a.y===y).map(a=>`<div class="aw">${L(a.t)}<div><b>${esc(a.p)}</b><small>${esc(a.a)}</small></div></div>`).join('')}</div>`}).join('');
+    return `<div class="yr"><div class="yrph" data-y="${y}"></div><h3><a href="#g${g?.n}" style="text-decoration:none">${y}</a></h3>${g&&g.w!=null?`<p style="margin:0 0 6px;color:var(--mute)" class="num">Westerly ${g.w}, Stonington ${g.s}</p>`:''}${awSort(D.awards.filter(a=>a.y===y)).map(a=>`<div class="aw">${L(a.t)}<div><b>${esc(a.p)}</b><small>${esc(a.a)}</small></div></div>`).join('')}</div>`}).join('');
 }
 
 function history(){
@@ -706,6 +706,7 @@ function fillArt(){
     el.innerHTML=ps.slice(0,8).map(x=>`<button type="button" data-id="${esc(x.id)}" aria-label="Open photo"><img src="${esc(purl(x))}" style="object-position:${esc(x.pos||'50% 50%')}" alt="${esc(x.caption||'')}"></button>`).join('')})}
 function fillStrips(){fillArt();document.querySelectorAll('.gph').forEach(el=>{const y=+el.dataset.y;const ps=y?PH.filter(x=>x.year===y):[];
   el.innerHTML=ps.map(x=>`<button type="button" data-id="${esc(x.id)}" aria-label="Open photo"><img src="${esc(purl(x))}" style="object-position:${esc(x.pos||'50% 50%')}" alt="${esc(x.caption||'')}"></button>`).join('')})}
+function awSort(l){return l.map((a,i)=>[a,i]).sort((x,y)=>(/MVP/.test(y[0].a)-/MVP/.test(x[0].a))||x[1]-y[1]).map(x=>x[0])}
 function heroPhoto(){return placed('home')[0]||null}
 function setHero(){const h=document.querySelector('.hero'),x=heroPhoto();
   if(x){h.classList.add('photo');h.style.backgroundImage=`url("${purl(x)}")`;h.style.backgroundPosition=x.pos||''}else{h.classList.remove('photo');h.style.backgroundImage='';h.style.backgroundPosition=''}}
