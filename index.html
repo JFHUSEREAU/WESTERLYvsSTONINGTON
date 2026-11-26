@@ -393,7 +393,7 @@ footer p:first-child{font-family:'Playfair Display',Georgia,serif!important;text
 <body>
 <header><div class="navin">
   <a class="brand" href="#top"><img class="logo" src="img/westerly.png" alt="Westerly Bulldogs"><img class="logo" src="img/stonington.png" alt="Stonington Bears"><span>Westerly vs. Stonington</span></a>
-  <nav class="scroll" aria-label="Sections"><a href="#gameday">2026 Game</a><a href="#stories">Stories</a><a href="#last">2025 Recap</a><a href="#series">Series</a><a href="#finder">Game Finder</a><a href="#records">Records</a><a href="#honors">Award Winners</a><a href="#history">History</a><a href="#gallery">Gallery</a></nav>
+  <nav class="scroll" aria-label="Sections"><a href="#gameday" id="navNext">2027 Game</a><a href="#stories">Stories</a><a href="#last" id="navLast">2026 Recap</a><a href="#series">Series</a><a href="#finder">Game Finder</a><a href="#records">Records</a><a href="#honors">Award Winners</a><a href="#history">History</a><a href="#gallery">Gallery</a></nav>
 </div></header>
 
 <section class="hero" id="top">
@@ -595,6 +595,7 @@ function hero(){
     $('gameLede').textContent=`${/Augeri/.test(nx.field||'')?'Westerly':'Stonington'} hosts at ${nx.field||'Palmer Field'} on Thanksgiving morning, ${nx.d}. ${lw===ls?`The series is level at ${lw}–${ls}–${lt} for the first time since ${prevTie?prevTie.y:'the early years'}, so the winner takes the all-time lead.`:state+'.'} ${team(last.win)} comes in on ${[8,11,18].includes(last.streak)?'an':'a'} ${last.streak}-game winning streak.`;
   } else {$('gameTitle').textContent='See you next Thanksgiving';$('gameLede').textContent=state+'.';$('heroMeta').textContent='Every Thanksgiving morning since 1911'}
   gameday(nx);
+  if($('navNext'))$('navNext').textContent=nx?`${nx.y} Game`:'Next Game';if($('navLast'))$('navLast').textContent=`${last.y} Recap`;
   $('seriesTitle').textContent=`Who led the series after every game, ${P[0].y}–${last.y}`;
   $('upd').textContent=`Updated ${D.updated}, through the ${last.y} game.`;
   // recap
